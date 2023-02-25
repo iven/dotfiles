@@ -6,18 +6,18 @@
 
 ```bash
 $ brew install chezmoi
-$ chezmoi init --apply iven
+$ chezmoi init --apply --ssh iven
 ```
 
 ### Arch Linux
 
 ```bash
 $ sudo pacman -S chezmoi
-$ chezmoi init --apply iven
+$ chezmoi init --apply --ssh iven
 ```
 
 ### 其他系统
 
 ```bash
-$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply iven
+$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --ssh iven
 ```
