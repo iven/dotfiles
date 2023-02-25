@@ -1,0 +1,28 @@
+[color]
+    ui = auto
+[commit]
+    gpgSign = true
+[core]
+    pager = delta
+[delta]
+    navigate = true
+[diff]
+    colorMoved = default
+[gpg]
+    program = gpg2
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[pull]
+    rebase = true
+[push]
+    default = current
+[rebase]
+    autoStash = true
+[tag]
+    gpgSign = true
+[user]
+    email = {{ .user.email }}
+    name = {{ .user.name }}
+    signingKey = D829E4EB662B22F8

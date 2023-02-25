@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+
+set timeout 2
+set host [lindex $argv 0]
+set otp [exec oathtool --totp -b <<OTP_SECRET>>]
+
+# spawn -noecho ssh-add -q $env(HOME)/.ssh/id_ed25519
+
+spawn -noecho ssh ${host}
+expect {
+  "请输入 OAuth 二次验证码（6位数字）：" {
+    send -- "${otp}\r"
+    exp_continue
+  }
+
+  timeout
+}
+
+interact return
