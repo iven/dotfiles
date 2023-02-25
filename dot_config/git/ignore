@@ -1,0 +1,5 @@
+*.py[co]
+compile_commands.json
+*~
+*.sw[a-z]
+nohup.out

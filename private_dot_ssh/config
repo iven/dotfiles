@@ -1,0 +1,41 @@
+Host *
+  # 总是使用 IPv4，跳过 IPv6 检查，加快速度
+  AddressFamily inet
+  # 使用更快速的 Cipher
+  Ciphers aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+  # 慢速网络使用压缩会比较快，局域网应该禁掉
+  Compression yes
+  # 同主机共享连接
+  ControlMaster auto
+  ControlPath ~/.ssh/master-%r@%n:%p
+  ControlPersist 10m
+  # Forward SSH Agent
+  ForwardAgent yes
+  # Keep alive，防止自动登出
+  ServerAliveInterval 60
+  ServerAliveCountMax 120
+
+Match exec "getent hosts %h | grep -qE '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-9]\.|172\.3[01]\.)'"
+  # 内网禁掉压缩
+  Compression no
+  # Gnupg 和 SSH 转发
+  RemoteForward /home/%r/.gnupg/S.gpg-agent [%d/.gnupg/S.gpg-agent.extra]:
+  RemoteForward /home/%r/.gnupg/S.gpg-agent.ssh [%d/.gnupg/S.gpg-agent.ssh]:
+  # 内网不检查 Host Key
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+
+Host *-wukong-cpu*
+  User maintain
+
+Host *-wukong-mini* wukong-dev*
+  User wukong
+
+Host wukong-dev
+  Port 4026
+
+Host wukong-dev2
+  Port 4022
+
+Host iven-mbp
+  HostName 172.29.206.177
