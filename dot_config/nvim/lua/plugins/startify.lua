@@ -20,6 +20,7 @@ vim.g.startify_skiplist = { 'COMMIT_EDITMSG' }
 vim.g.startify_bookmarks = {
   { c = '~/.local/share/chezmoi/dot_config/nvim/init.lua' },
   { f = '~/.local/share/chezmoi/dot_config/fish/config.fish' },
+  { n = '~/.local/share/chezmoi/files/nix/common.nix' },
   { s = '~/.local/share/chezmoi/dot_config/starship.toml' },
 }
 vim.g.startify_session_dir = '~/.local/share/nvim/sessions'

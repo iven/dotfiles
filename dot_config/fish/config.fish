@@ -20,6 +20,10 @@ if test -f $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh; and type -q repl
     replay source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 end
 
+if test -f $HOME/.nix-profile/etc/profile.d/nix.fish
+    source $HOME/.nix-profile/etc/profile.d/nix.fish
+end
+
 ########## 交互式会话 ##########
 
 if status is-interactive
@@ -63,7 +67,9 @@ if status is-interactive
         abbr -a czap chezmoi apply --verbose
         abbr -a czcd cd (chezmoi source-path)
         abbr -a czd chezmoi diff
+        abbr -a cze chezmoi edit
         abbr -a czi chezmoi init
+        abbr -a czu chezmoi update
     end
 
     if command -sq kubectl
