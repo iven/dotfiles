@@ -49,7 +49,10 @@ vim.keymap.set('n', '<leader>q', '<cmd>qa!<cr>')
 
 -- 快速编辑和重载 init.lua
 vim.keymap.set('n', '<leader>s', '<cmd>runtime init.lua<cr>')
-vim.keymap.set('n', '<leader>e', '<cmd>e ~/.config/nvim/init.lua<cr>')
+vim.keymap.set('n', '<leader>e', '<cmd>e ~/.local/share/chezmoi/dot_config/nvim/init.lua<cr>')
+
+-- 快速打开 Lazy
+vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>')
 
 -- 防止误触
 vim.keymap.set('n', 'q:', '<esc>')
