@@ -24,6 +24,10 @@ if test -f $HOME/.nix-profile/etc/profile.d/nix.fish
     source $HOME/.nix-profile/etc/profile.d/nix.fish
 end
 
+if test -f /etc/profile.d/nix-daemon.fish
+    source /etc/profile.d/nix-daemon.fish
+end
+
 ########## 交互式会话 ##########
 
 if status is-interactive
@@ -76,14 +80,14 @@ if status is-interactive
         abbr -a k kubectl
     end
 
-    if command -sq systemd
-        abbr -a S sudo systemd
-        abbr -a start sudo systemd start
-        abbr -a stop sudo systemd stop
-        abbr -a restart sudo systemd restart
-        abbr -a enable sudo systemd enable
-        abbr -a disable sudo systemd disable
-        abbr -a st sudo systemd status
+    if command -sq systemctl
+        abbr -a S sudo systemctl
+        abbr -a start sudo systemctl start
+        abbr -a stop sudo systemctl stop
+        abbr -a restart sudo systemctl restart
+        abbr -a enable sudo systemctl enable
+        abbr -a disable sudo systemctl disable
+        abbr -a st sudo systemctl status
     end
 
     if command -sq yay
@@ -105,9 +109,7 @@ if status is-interactive
         gpgconf --launch gpg-agent
     end
     set -e SSH_AGENT_PID
-    set -gx SSH_AUTH_SOCK $HOME/.gnupg/S.gpg-agent.ssh
-    # 这种写法在 gpg 低版本下不好使
-    # set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     set -x GPG_TTY (tty)
     if command -sq gpg-connect-agent
         gpg-connect-agent updatestartuptty /bye &>/dev/null
