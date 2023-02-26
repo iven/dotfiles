@@ -15,7 +15,6 @@
       pkgs.fzf
       pkgs.getent
       pkgs.git
-      pkgs.gnupg
       pkgs.grc
       pkgs.htop
       pkgs.nil
