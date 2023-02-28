@@ -6,6 +6,7 @@
   home.homeDirectory = pkgs.lib.mkOverride 10 "/home/maintain";
 
   home.packages = [
+    pkgs.gcc
     pkgs.gnupg
   ];
   home.sessionVariables.NIX_PROFILE_NAME = pkgs.lib.mkOverride 10 "maintain";
