@@ -1,7 +1,9 @@
 [color]
     ui = auto
+{{- if ne .chezmoi.osRelease.id "centos" }}
 [commit]
     gpgSign = true
+{{- end }}
 [core]
     pager = delta
 [delta]
@@ -20,8 +22,10 @@
     default = current
 [rebase]
     autoStash = true
+{{- if ne .chezmoi.osRelease.id "centos" }}
 [tag]
     gpgSign = true
+{{- end }}
 [user]
     email = {{ .user.email }}
     name = {{ .user.name }}
