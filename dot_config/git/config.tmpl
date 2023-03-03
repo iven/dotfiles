@@ -1,7 +1,8 @@
 [color]
     ui = auto
-{{- if ne .chezmoi.osRelease.id "centos" }}
 [commit]
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "centos") }}
+{{- else }}
     gpgSign = true
 {{- end }}
 [core]
@@ -22,8 +23,9 @@
     default = current
 [rebase]
     autoStash = true
-{{- if ne .chezmoi.osRelease.id "centos" }}
 [tag]
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "centos") }}
+{{- else }}
     gpgSign = true
 {{- end }}
 [user]

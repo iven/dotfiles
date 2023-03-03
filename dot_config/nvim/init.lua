@@ -213,14 +213,14 @@ require("lazy").setup({
       { 'K',          function() vim.lsp.buf.hover() end },
       { 'gd',         function() vim.lsp.buf.definition() end },
       { 'gD',         function() vim.lsp.buf.type_definition() end },
-
+      --
       { '<leader>ca', function() vim.lsp.buf.code_action() end },
       { '<leader>F',  function() vim.lsp.buf.format({ async = true }) end },
       { '<leader>R',  function() vim.lsp.buf.rename() end },
-
+      --
       { '[d',         function() vim.diagnostic.goto_prev() end },
       { ']d',         function() vim.diagnostic.goto_next() end },
-
+      --
       { 'gwa',        function() vim.lsp.buf.add_workspace_folder() end },
       { 'gwr',        function() vim.lsp.buf.remove_workspace_folder() end },
       { 'gwl',        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end },
@@ -282,6 +282,7 @@ require("lazy").setup({
     'windwp/nvim-autopairs',
     config = function() require('plugins.nvim-autopairs') end,
     event = 'InsertEnter',
+    enabled = false,
   },
   {
     'phaazon/hop.nvim',
