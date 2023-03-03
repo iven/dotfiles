@@ -10,48 +10,48 @@
 -- General
 -----------------------------------------------------------
 vim.opt.fileencodings = 'ucs-bom,utf-8,gb18030,gb2312,gbk,cp936'
-vim.opt.mouse = 'a' -- Enable mouse support
+vim.opt.mouse = 'a'               -- Enable mouse support
 vim.opt.mousemoveevent = true
 vim.opt.clipboard = 'unnamedplus' -- 使用系统剪贴板，需要安装 xclip 或者 wl-clipboard
-vim.opt.swapfile = false -- Don't use swapfile
-vim.opt.undofile = true -- 保存 Undo 历史
-vim.opt.autochdir = true -- 随编辑文件自动跳转目录
+vim.opt.swapfile = false          -- Don't use swapfile
+vim.opt.undofile = true           -- 保存 Undo 历史
+vim.opt.autochdir = true          -- 随编辑文件自动跳转目录
 vim.opt.whichwrap = 'b,s,<,>,h,l' -- 设置跨行键
-vim.opt.shell = '/bin/bash' -- 设置终端
+vim.opt.shell = '/bin/bash'       -- 设置终端
 
 -----------------------------------------------------------
 -- Neovim UI
 -----------------------------------------------------------
-vim.opt.number = true -- Show line number
-vim.opt.showmatch = true -- Highlight matching parenthesis
-vim.opt.foldmethod = 'expr' -- Enable folding (default 'foldmarker')
+vim.opt.number = true        -- Show line number
+vim.opt.showmatch = true     -- Highlight matching parenthesis
+vim.opt.foldmethod = 'expr'  -- Enable folding (default 'foldmarker')
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldlevelstart = 99 -- Disable folding by default
-vim.opt.colorcolumn = '80' -- Line lenght marker at 80 columns
-vim.opt.ignorecase = true -- Ignore case letters when search
-vim.opt.smartcase = true -- Ignore lowercase for the whole pattern
-vim.opt.linebreak = true -- Wrap on word boundary
-vim.opt.cursorline = true -- 高亮当前行
+vim.opt.foldlevelstart = 99  -- Disable folding by default
+vim.opt.colorcolumn = '80'   -- Line lenght marker at 80 columns
+vim.opt.ignorecase = true    -- Ignore case letters when search
+vim.opt.smartcase = true     -- Ignore lowercase for the whole pattern
+vim.opt.linebreak = true     -- Wrap on word boundary
+vim.opt.cursorline = true    -- 高亮当前行
 vim.opt.termguicolors = true -- Enable 24-bit RGB colors
 vim.opt.inccommand = 'split' -- 即时显示替换结果
-vim.opt.conceallevel = 0 -- 禁止 JSON, Markdown 等文件隐藏特定语法相关字符的行为
+vim.opt.conceallevel = 0     -- 禁止 JSON, Markdown 等文件隐藏特定语法相关字符的行为
 vim.opt.list = true
 vim.opt.listchars:append('tab:··,trail: ,extends:↷,precedes:↶')
 
 -----------------------------------------------------------
 -- Tabs, indent
 -----------------------------------------------------------
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.shiftwidth = 4 -- Shift 4 spaces when tab
-vim.opt.tabstop = 4 -- 1 tab == 4 spaces
+vim.opt.expandtab = true   -- Use spaces instead of tabs
+vim.opt.shiftwidth = 4     -- Shift 4 spaces when tab
+vim.opt.tabstop = 4        -- 1 tab == 4 spaces
 vim.opt.smartindent = true -- Autoindent new lines
 
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
-vim.opt.hidden = true -- Enable background buffers
+vim.opt.hidden = true     -- Enable background buffers
 vim.opt.lazyredraw = true -- Faster scrolling
-vim.opt.synmaxcol = 240 -- Max column for syntax highlight
+vim.opt.synmaxcol = 240   -- Max column for syntax highlight
 -- opt.updatetime = 400                  -- ms to wait for trigger 'document_highlight'
 
 -----------------------------------------------------------
