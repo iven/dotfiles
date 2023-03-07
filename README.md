@@ -19,5 +19,5 @@ $ chezmoi init --apply --ssh iven
 ### 其他系统
 
 ```bash
-$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --ssh iven
+$ cd /tmp && sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --ssh iven
 ```
