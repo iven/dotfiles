@@ -66,7 +66,7 @@ require("lazy").setup({
     config = function() require('plugins.nvim-treesitter') end,
   },
   {
-    'mrjones2014/nvim-ts-rainbow',
+    'HiPhish/nvim-ts-rainbow2',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
