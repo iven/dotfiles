@@ -152,3 +152,12 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
   desc = '对于 Code Action 显示灯泡图标',
   group = 'user_config',
 })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = '*',
+  callback = function()
+    vim.keymap.set({ 'n' }, '<LeftRelease>', '<LeftRelease>i', { buffer = 0 })
+  end,
+  desc = '终端鼠标操作不进入 Terminal Mode',
+  group = 'user_config',
+})

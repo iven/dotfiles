@@ -6,9 +6,9 @@ function fish_greeting
     end
 
     if not type -q fisher
-        echo "✨使用以下命令初始化 Fisher："
+        echo "✨设置好代理服务器后，使用以下命令初始化 Fisher："
         echo
-        echo "    \$ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher update"
+        echo "    \$ curl -sL https://git.io/fisher | source && fisher update"
         echo
     end
 end
