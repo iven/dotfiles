@@ -6,12 +6,12 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-{{- if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 font_family      JetBrainsMono Nerd Font Mono Regular
 bold_font        JetBrainsMono Nerd Font Mono Bold
 italic_font      JetBrainsMono Nerd Font Mono ExtraLight Italic
 bold_italic_font JetBrainsMono Nerd Font Mono Bold Italic
-{{- else }}
+{{- else -}}
 font_family      JetBrains Mono Regular Nerd Font Complete Mono
 bold_font        JetBrains Mono Bold Nerd Font Complete Mono
 italic_font      JetBrains Mono Regular Italic Nerd Font Complete Mono
