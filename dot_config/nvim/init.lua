@@ -151,7 +151,7 @@ require("lazy").setup({
   {
     "NvChad/nvim-colorizer.lua",
     config = function() require('colorizer').setup({}) end,
-    ft = { 'vim', 'lua', 'css' },
+    ft = { 'vim', 'lua', 'css', 'kitty' },
   },
   {
     "j-hui/fidget.nvim",
