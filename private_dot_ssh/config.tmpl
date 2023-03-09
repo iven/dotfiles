@@ -25,6 +25,11 @@ Match exec "getent hosts %h | grep -qE '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
 
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+Host *wukong-*
+  ProxyJump iven-mbp
+{{- end }}
+
 Host *-wukong-cpu*
   User maintain
 
