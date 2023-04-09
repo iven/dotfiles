@@ -3,7 +3,6 @@ local lsputil = require("lspconfig.util")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
-local lsp_signature = require('lsp_signature')
 local lsp_inlayhints = require("lsp-inlayhints")
 local navic = require("nvim-navic")
 
@@ -18,7 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
     lsp_format.on_attach(client)
-    lsp_signature.on_attach()
     lsp_inlayhints.on_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
@@ -105,22 +103,7 @@ lspconfig['lua_ls'].setup {
 
 -- 为 LSP 浮动窗口添加边框
 -- https://vi.stackexchange.com/questions/39074/user-borders-around-lsp-floating-windows
-local _border = "single"
-local _diagnostic_format = '[%s] %s  |%s|'
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  {
-    border = _border
-  }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  {
-    border = _border
-  }
-)
+local _border = "rounded"
 
 require('lspconfig.ui.windows').default_options = {
   border = _border
@@ -129,15 +112,7 @@ require('lspconfig.ui.windows').default_options = {
 -- 输入时实时提示错误
 vim.diagnostic.config {
   update_in_insert = true,
-  virtual_text = {
-    format = function(diagnostic)
-      return string.format(_diagnostic_format, diagnostic.source, diagnostic.message, diagnostic.code)
-    end,
-  },
   float = {
     border = _border,
-    format = function(diagnostic)
-      return string.format(_diagnostic_format, diagnostic.source, diagnostic.message, diagnostic.code)
-    end,
   },
 }

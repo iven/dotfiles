@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 require('settings')
 require('keymaps')
 
@@ -115,6 +117,20 @@ require("lazy").setup({
     },
     config = function()
       require('lualine').setup {
+        sections = {
+          lualine_x = {
+            {
+              require("noice").api.status.message.get,
+              cond = require("noice").api.status.message.has,
+              color = { fg = "#37D99E" },
+            },
+            {
+              require("noice").api.status.mode.get,
+              cond = require("noice").api.status.mode.has,
+              color = { fg = "#37D99E" },
+            },
+          },
+        },
         inactive_sections = {
           lualine_c = {
             {
@@ -154,16 +170,6 @@ require("lazy").setup({
     ft = { 'vim', 'lua', 'css', 'kitty' },
   },
   {
-    "j-hui/fidget.nvim",
-    config = function()
-      require('fidget').setup {
-        text = {
-          spinner = "meter",
-        },
-      }
-    end,
-  },
-  {
     'prichrd/netrw.nvim',
     config = function() require 'netrw'.setup({}) end,
     ft = 'netrw',
@@ -173,7 +179,15 @@ require("lazy").setup({
     config = function()
       require('whitespace-nvim').setup({
         highlight = 'DiffDelete',
-        ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'toggleterm', 'lazy', 'lspinfo', 'help' },
+        ignored_filetypes = {
+          'TelescopePrompt',
+          'Trouble',
+          'help',
+          'lazy',
+          'lspinfo',
+          'noice',
+          'toggleterm',
+        },
       })
     end
   },
@@ -189,6 +203,52 @@ require("lazy").setup({
       })
     end
   },
+  {
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = false,        -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = true,        -- add a border to hover docs and signature help
+        },
+        routes = {
+          {
+            -- 防止被下面的规则覆盖
+            filter = {
+              event = "msg_show",
+              kind = "search_count",
+            },
+            view = "virtualtext",
+          },
+          {
+            filter = {
+              event = "msg_show",
+              ["not"] = {
+                find = "\n",
+              },
+            },
+            opts = { skip = true },
+          },
+        },
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
   -- 语法
   {
     'neovim/nvim-lspconfig',
@@ -201,8 +261,6 @@ require("lazy").setup({
       'jose-elias-alvarez/null-ls.nvim',
       -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
-      -- 实时显示函数参数定义
-      'ray-x/lsp_signature.nvim',
       {
         'lvimuser/lsp-inlayhints.nvim',
         commit = '9bcd6fe25417b7808fe039ab63d4224f2071d24a',
@@ -210,20 +268,27 @@ require("lazy").setup({
     },
     config = function() require('plugins.lspconfig') end,
     keys = {
-      { 'K',          function() vim.lsp.buf.hover() end },
-      { 'gd',         function() vim.lsp.buf.definition() end },
-      { 'gD',         function() vim.lsp.buf.type_definition() end },
+      { 'K',  function() vim.lsp.buf.hover() end },
+      { 'gd', function() vim.lsp.buf.definition() end },
+      { 'gD', function() vim.lsp.buf.type_definition() end },
       --
-      { '<leader>ca', function() vim.lsp.buf.code_action() end },
-      { '<leader>F',  function() vim.lsp.buf.format({ async = true }) end },
-      { '<leader>R',  function() vim.lsp.buf.rename() end },
+      {
+        '<leader>ca',
+        function()
+          -- 加载 ui-select
+          require('telescope')
+          vim.lsp.buf.code_action()
+        end,
+      },
+      { '<leader>F', function() vim.lsp.buf.format({ async = true }) end },
+      { '<leader>R', function() vim.lsp.buf.rename() end },
       --
-      { '[d',         function() vim.diagnostic.goto_prev() end },
-      { ']d',         function() vim.diagnostic.goto_next() end },
+      { '[d',        function() vim.diagnostic.goto_prev() end },
+      { ']d',        function() vim.diagnostic.goto_next() end },
       --
-      { 'gwa',        function() vim.lsp.buf.add_workspace_folder() end },
-      { 'gwr',        function() vim.lsp.buf.remove_workspace_folder() end },
-      { 'gwl',        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end },
+      { 'gwa',       function() vim.lsp.buf.add_workspace_folder() end },
+      { 'gwr',       function() vim.lsp.buf.remove_workspace_folder() end },
+      { 'gwl',       function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end },
     },
   },
   {
@@ -365,9 +430,6 @@ require("lazy").setup({
   {
     'tpope/vim-abolish',
     cmd = 'S',
-  },
-  {
-    'gpanders/editorconfig.nvim',
   },
   'mg979/vim-visual-multi',
   -- 其他
