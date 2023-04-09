@@ -18,6 +18,7 @@ vim.opt.undofile = true           -- 保存 Undo 历史
 vim.opt.autochdir = true          -- 随编辑文件自动跳转目录
 vim.opt.whichwrap = 'b,s,<,>,h,l' -- 设置跨行键
 vim.opt.shell = '/bin/bash'       -- 设置终端
+vim.opt.diffopt = 'internal,filler,closeoff,algorithm:histogram,indent-heuristic,linematch:60'
 
 -----------------------------------------------------------
 -- Neovim UI
@@ -49,9 +50,9 @@ vim.opt.smartindent = true -- Autoindent new lines
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
-vim.opt.hidden = true     -- Enable background buffers
-vim.opt.lazyredraw = true -- Faster scrolling
-vim.opt.synmaxcol = 240   -- Max column for syntax highlight
+vim.opt.hidden = true   -- Enable background buffers
+-- vim.opt.lazyredraw = true -- Faster scrolling
+vim.opt.synmaxcol = 240 -- Max column for syntax highlight
 -- opt.updatetime = 400                  -- ms to wait for trigger 'document_highlight'
 
 -----------------------------------------------------------
