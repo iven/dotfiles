@@ -52,8 +52,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable( -1) then
-        luasnip.jump( -1)
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -111,30 +111,3 @@ cmp.setup {
     },
   },
 }
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  }),
-  sorting = {
-    comparators = {
-      cmp.config.compare.offset,
-      cmp.config.compare.exact,
-      cmp.config.compare.score,
-      cmp.config.compare.kind,
-      cmp.config.compare.order,
-    },
-  },
-})
