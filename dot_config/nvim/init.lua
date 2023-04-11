@@ -207,6 +207,20 @@ require("lazy").setup({
     "folke/noice.nvim",
     config = function()
       require("noice").setup({
+        views = {
+          cmdline_popup = {
+            position = {
+              row = -2,
+              col = 6,
+            },
+          },
+          popupmenu = {
+            position = {
+              row = -5,
+              col = 5,
+            },
+          },
+        },
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
