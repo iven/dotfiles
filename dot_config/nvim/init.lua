@@ -118,16 +118,15 @@ require("lazy").setup({
     config = function()
       require('lualine').setup {
         sections = {
-          lualine_x = {
+          lualine_c = {
             {
               require("noice").api.status.message.get,
               cond = require("noice").api.status.message.has,
-              color = { fg = "#37D99E" },
+              color = { fg = "#ABCF76" },
             },
             {
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = "#37D99E" },
+              'searchcount',
+              color = { fg = "#ABCF76" },
             },
           },
         },
@@ -161,8 +160,8 @@ require("lazy").setup({
     config = function() require('plugins.indent_blankline') end,
   },
   {
-    "themercorp/themer.lua",
-    config = function() require('plugins.themer') end,
+    'marko-cerovac/material.nvim',
+    config = function() require('plugins.theme') end,
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -182,6 +181,7 @@ require("lazy").setup({
         ignored_filetypes = {
           'TelescopePrompt',
           'Trouble',
+          'git.nvim',
           'help',
           'lazy',
           'lspinfo',
@@ -224,14 +224,6 @@ require("lazy").setup({
           lsp_doc_border = true,        -- add a border to hover docs and signature help
         },
         routes = {
-          {
-            -- 防止被下面的规则覆盖
-            filter = {
-              event = "msg_show",
-              kind = "search_count",
-            },
-            view = "virtualtext",
-          },
           {
             filter = {
               event = "msg_show",
@@ -346,7 +338,6 @@ require("lazy").setup({
     'windwp/nvim-autopairs',
     config = function() require('plugins.nvim-autopairs') end,
     event = 'InsertEnter',
-    enabled = false,
   },
   {
     'phaazon/hop.nvim',
