@@ -118,6 +118,7 @@ require("lazy").setup({
     config = function()
       require('lualine').setup {
         sections = {
+          lualine_b = { 'filename', 'progress', 'diff', 'diagnostic' },
           lualine_c = {
             {
               require("noice").api.status.message.get,
@@ -129,14 +130,15 @@ require("lazy").setup({
               color = { fg = "#ABCF76" },
             },
           },
+          lualine_x = { 'fileformat' },
+          lualine_y = { 'filetype' },
+          lualine_z = { 'branch' },
         },
         inactive_sections = {
           lualine_c = {
-            {
-              'filename',
-              path = 2,
-            },
+            { 'filename', path = 2 },
           },
+          lualine_x = { 'branch' },
         },
       }
     end,
@@ -205,6 +207,10 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     config = function()
       require("noice").setup({
         views = {
@@ -241,6 +247,7 @@ require("lazy").setup({
           {
             filter = {
               event = "msg_show",
+              kind = { '', 'echo', 'echomsg', 'return_prompt', 'search_count' },
               ["not"] = {
                 find = "\n",
               },
@@ -250,10 +257,6 @@ require("lazy").setup({
         },
       })
     end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
   },
   -- 语法
   {
