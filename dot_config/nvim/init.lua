@@ -123,11 +123,11 @@ require("lazy").setup({
             {
               require("noice").api.status.message.get,
               cond = require("noice").api.status.message.has,
-              color = { fg = "#ABCF76" },
+              color = { fg = "#8ebd6b" },
             },
             {
               'searchcount',
-              color = { fg = "#ABCF76" },
+              color = { fg = "#8ebd6b" },
             },
           },
           lualine_x = { 'fileformat' },
@@ -162,7 +162,7 @@ require("lazy").setup({
     config = function() require('plugins.indent_blankline') end,
   },
   {
-    'marko-cerovac/material.nvim',
+    'navarasu/onedark.nvim',
     config = function() require('plugins.theme') end,
   },
   {
