@@ -129,6 +129,7 @@ if status is-interactive
     ########## 其他 ##########
 
     if command -sq starship
+        set -gx STARSHIP_LOG error
         starship init fish | source
     end
 end
