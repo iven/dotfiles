@@ -109,9 +109,9 @@ require('lspconfig.ui.windows').default_options = {
   border = _border
 }
 
--- 输入时实时提示错误
 vim.diagnostic.config {
-  update_in_insert = true,
+  -- 输入时不实时提示错误
+  update_in_insert = false,
   float = {
     border = _border,
   },
