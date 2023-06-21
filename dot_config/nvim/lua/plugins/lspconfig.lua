@@ -9,7 +9,8 @@ local navic = require("nvim-navic")
 local runtime_path = vim.split(package.path, ';')
 local capabilities = cmp_nvim_lsp.default_capabilities()
 -- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
-capabilities.offsetEncoding = "utf-8"
+local clangd_capabilities = cmp_nvim_lsp.default_capabilities()
+clangd_capabilities.offsetEncoding = "utf-8"
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -47,7 +48,7 @@ for _, lsp in pairs(servers) do
 end
 
 lspconfig['clangd'].setup {
-  capabilities = capabilities,
+  capabilities = clangd_capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
