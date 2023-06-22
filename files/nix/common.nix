@@ -24,6 +24,7 @@
       pkgs.pyright
       pkgs.ripgrep
       pkgs.rust-analyzer
+      pkgs.rustfmt
       pkgs.starship
       pkgs.tig
     ];
