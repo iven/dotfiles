@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
-local null_ls = require("null-ls")
 local lsp_inlayhints = require("lsp-inlayhints")
 local navic = require("nvim-navic")
 
@@ -29,14 +28,6 @@ lsp_format.setup()
 lsp_inlayhints.setup {
   inlay_hints = {
     only_current_line = true,
-  },
-}
-null_ls.setup {
-  sources = {
-    -- null_ls.builtins.formatting.gofmt,
-    -- null_ls.builtins.formatting.goimports,
-    -- null_ls.builtins.formatting.prettier,
-    -- null_ls.builtins.diagnostics.golangci_lint,
   },
 }
 

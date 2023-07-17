@@ -17,6 +17,7 @@
       pkgs.git
       pkgs.grc
       pkgs.htop
+      pkgs.lazygit
       pkgs.sumneko-lua-language-server
       pkgs.nil
       pkgs.nix-index

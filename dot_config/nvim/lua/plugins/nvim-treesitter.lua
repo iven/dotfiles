@@ -1,5 +1,3 @@
-local rainbow = require('ts-rainbow')
-
 require("nvim-treesitter.configs").setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
@@ -43,18 +41,5 @@ require("nvim-treesitter.configs").setup {
   },
   indent = {
     enable = true,
-  },
-  rainbow = {
-    enable = true,
-    disable = {
-      'json',
-    },
-    query = {
-      'rainbow-parens',
-      html = 'rainbow-tags',
-      xml = 'rainbow-tags',
-      latex = 'rainbow-blocks',
-    },
-    strategy = rainbow.strategy['local'],
   },
 }

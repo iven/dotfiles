@@ -68,10 +68,22 @@ require("lazy").setup({
     config = function() require('plugins.nvim-treesitter') end,
   },
   {
-    'HiPhish/nvim-ts-rainbow2',
+    'HiPhish/rainbow-delimiters.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
+    config = function()
+      require 'rainbow-delimiters.setup' {
+        strategy = {
+          [''] = require('rainbow-delimiters').strategy['global'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        blacklist = { 'json' },
+      }
+    end,
   },
   {
     'akinsho/bufferline.nvim',
@@ -266,8 +278,6 @@ require("lazy").setup({
       'hrsh7th/cmp-nvim-lsp',
       -- 保存时自动格式化文件
       'lukas-reineke/lsp-format.nvim',
-      -- 将 Linter 等伪装成 LSP Server
-      'jose-elias-alvarez/null-ls.nvim',
       -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
       {
