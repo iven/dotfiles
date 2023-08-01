@@ -61,8 +61,13 @@ if status is-interactive
         abbr -a f fd
     end
 
-    if type -q edit-in-kitty
+    if type -q lazygit
+        abbr -a lg lazygit
+    end
+
+    if type -q kitten
         abbr -a e edit-in-kitty
+        abbr -a icat kitten icat
     end
 
     if type -q chezmoi
