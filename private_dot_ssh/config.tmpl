@@ -24,11 +24,12 @@ Match exec "getent hosts %h | grep -qE '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-
   # 内网不检查 Host Key
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
+  ForwardX11 yes
 
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
 Host *wukong-*
   ProxyJump iven-mbp
-{{- end }}
+{{- end -}}
 
 Host *-wukong-cpu*
   User maintain
