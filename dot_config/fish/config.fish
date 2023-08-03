@@ -54,7 +54,7 @@ if status is-interactive
     if command -sq exa
         alias ls "exa --icons"
         abbr -a tree ls --tree
-        abbr -a la ls -lahb --time-style long-iso --git
+        abbr -a la ls -lahbg --time-style long-iso --git
     end
 
     if command -sq fd
