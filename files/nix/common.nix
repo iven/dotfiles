@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   home = {
-    stateVersion = "22.11";
+    stateVersion = "23.05";
     enableNixpkgsReleaseCheck = true;
     packages = [
       pkgs.bat
@@ -19,6 +19,7 @@
       pkgs.htop
       pkgs.lazygit
       pkgs.sumneko-lua-language-server
+      pkgs.neovim
       pkgs.nil
       pkgs.nix-index
       pkgs.nixpkgs-fmt
