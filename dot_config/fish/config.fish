@@ -6,7 +6,7 @@ fish_add_path $HOME/.krew/bin
 
 ########## 环境变量 ##########
 
-set -gx EDITOR vim
+set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
@@ -61,13 +61,18 @@ if status is-interactive
         abbr -a f fd
     end
 
+    if type -q kitten
+        abbr -a e edit-in-kitty
+        abbr -a icat kitten icat
+    end
+
     if type -q lazygit
         abbr -a lg lazygit
     end
 
-    if type -q kitten
-        abbr -a e edit-in-kitty
-        abbr -a icat kitten icat
+    if type -q nvim
+        abbr -a vi nvim
+        abbr -a vim nvim
     end
 
     if type -q chezmoi
