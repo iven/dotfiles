@@ -19,7 +19,6 @@
       pkgs.htop
       pkgs.lazygit
       pkgs.sumneko-lua-language-server
-      pkgs.neovim
       pkgs.nil
       pkgs.nix-index
       pkgs.nixpkgs-fmt
