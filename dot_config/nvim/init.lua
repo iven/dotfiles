@@ -163,6 +163,12 @@ require("lazy").setup({
     config = function() require('gitsigns').setup() end,
   },
   {
+    "ivanjermakov/troublesum.nvim",
+    config = function()
+      require("troublesum").setup()
+    end
+  },
+  {
     "petertriho/nvim-scrollbar",
     config = function()
       require("scrollbar").setup()
