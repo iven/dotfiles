@@ -458,7 +458,13 @@ require("lazy").setup({
   -- 其他
   {
     'dinhhuy258/git.nvim',
-    config = function() require('git').setup() end,
+    config = function()
+      require('git').setup {
+        target_branch = "main",
+        private_gitlabs = { "https://jihulab.com" },
+        winbar = true,
+      }
+    end,
   },
   {
     'tpope/vim-eunuch',
