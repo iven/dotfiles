@@ -8,7 +8,7 @@
       pkgs.btop
       pkgs.chezmoi
       pkgs.delta
-      pkgs.exa
+      pkgs.eza
       pkgs.fd
       pkgs.fish
       pkgs.fx

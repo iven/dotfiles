@@ -51,8 +51,8 @@ if status is-interactive
         alias diff delta
     end
 
-    if command -sq exa
-        alias ls "exa --icons"
+    if command -sq eza
+        alias ls "eza --icons"
         abbr -a tree ls --tree
         abbr -a la ls -lahbg --time-style long-iso --git
     end
@@ -133,7 +133,7 @@ if status is-interactive
 
     if command -sq fzf
         set fzf_fd_opts --hidden --exclude=.git
-        set fzf_preview_dir_cmd exa --all --color=always
+        set fzf_preview_dir_cmd eza --all --color=always
     end
 
     ########## 其他 ##########

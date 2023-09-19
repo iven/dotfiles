@@ -334,7 +334,7 @@ require("lazy").setup({
     event = 'InsertEnter',
   },
   {
-    "jcdickinson/codeium.nvim",
+    "Exafunction/codeium.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
