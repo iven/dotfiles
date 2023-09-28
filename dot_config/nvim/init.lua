@@ -177,7 +177,25 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = function() require('plugins.indent_blankline') end,
+    main = "ibl",
+    opts = {
+      exclude = {
+        filetypes = {
+          'help',
+          'git',
+          'markdown',
+          'text',
+          'terminal',
+          'lspinfo',
+          'packer',
+          'startify',
+        },
+        buftypes = {
+          'terminal',
+          'nofile',
+        },
+      },
+    },
   },
   {
     'navarasu/onedark.nvim',
