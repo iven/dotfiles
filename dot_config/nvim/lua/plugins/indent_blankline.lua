@@ -1,19 +1,21 @@
-require("indent_blankline").setup {
-  show_end_of_line = true,
-  show_current_context = true,
-  show_first_indent_level = false,
-  filetype_exclude = {
-    'help',
-    'git',
-    'markdown',
-    'text',
-    'terminal',
-    'lspinfo',
-    'packer',
-    'startify',
+require("ibl").setup {
+  scope = {
+    show_exact_scope = true,
   },
-  buftype_exclude = {
-    'terminal',
-    'nofile',
+  exclude = {
+    filetypes = {
+      'help',
+      'git',
+      'markdown',
+      'text',
+      'terminal',
+      'lspinfo',
+      'packer',
+      'startify',
+    },
+    buftypes = {
+      'terminal',
+      'nofile',
+    },
   },
 }
