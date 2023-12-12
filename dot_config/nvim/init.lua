@@ -178,24 +178,7 @@ require("lazy").setup({
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    opts = {
-      exclude = {
-        filetypes = {
-          'help',
-          'git',
-          'markdown',
-          'text',
-          'terminal',
-          'lspinfo',
-          'packer',
-          'startify',
-        },
-        buftypes = {
-          'terminal',
-          'nofile',
-        },
-      },
-    },
+    config = function() require('plugins.indent_blankline') end,
   },
   {
     'navarasu/onedark.nvim',
@@ -215,7 +198,7 @@ require("lazy").setup({
     'johnfrankmorgan/whitespace.nvim',
     config = function()
       require('whitespace-nvim').setup({
-        highlight = 'DiffDelete',
+        highlight = 'DiffText',
         ignored_filetypes = {
           'TelescopePrompt',
           'Trouble',
@@ -450,7 +433,7 @@ require("lazy").setup({
     },
   },
   {
-    'linty-org/readline.nvim',
+    'assistcontrol/readline.nvim',
     keys = {
       { '<M-f>', function() require('readline').forward_word() end,       mode = '!' },
       { '<M-b>', function() require('readline').backward_word() end,      mode = '!' },
