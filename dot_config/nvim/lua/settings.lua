@@ -112,6 +112,13 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'user_config',
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.inc',
+  command = [[setfiletype cpp]],
+  desc = '将 inc 文件识别为 cpp',
+  group = 'user_config',
+})
+
 vim.api.nvim_create_autocmd('BufReadPost', {
   pattern = '*',
   command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
