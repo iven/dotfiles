@@ -3,6 +3,7 @@
 fish_add_path $HOME/.bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.krew/bin
+fish_add_path /opt/homebrew/bin
 
 ########## 环境变量 ##########
 
@@ -125,10 +126,12 @@ if status is-interactive
 
     # ssh
     set -e SSH_AGENT_PID
-    if test -n "$SSH_TTY"
-        set -gx SSH_AUTH_SOCK (gpgconf --list-dirs homedir)/S.gpg-agent.ssh
-    else
-        set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    if command -sq gpgconf
+        if test -n "$SSH_TTY"
+            set -gx SSH_AUTH_SOCK (gpgconf --list-dirs homedir)/S.gpg-agent.ssh
+        else
+            set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+        end
     end
 
     if command -sq fzf

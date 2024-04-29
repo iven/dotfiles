@@ -9,7 +9,7 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      darwinPkgs = nixpkgs.legacyPackages.x86_64-darwin;
+      darwinPkgs = nixpkgs.legacyPackages.aarch64-darwin;
       linuxPkgs = nixpkgs.legacyPackages.x86_64-linux;
     in
     {
