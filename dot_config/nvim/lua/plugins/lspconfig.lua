@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
-local lsp_inlayhints = require("lsp-inlayhints")
 local navic = require("nvim-navic")
 
 local runtime_path = vim.split(package.path, ';')
@@ -17,19 +16,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
     lsp_format.on_attach(client)
-    lsp_inlayhints.on_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
+    end
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable()
     end
   end
 })
 
 lsp_format.setup()
-lsp_inlayhints.setup {
-  inlay_hints = {
-    only_current_line = true,
-  },
-}
 
 local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
 for _, lsp in pairs(servers) do

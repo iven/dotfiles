@@ -216,7 +216,7 @@ require("lazy").setup({
     'm4xshen/smartcolumn.nvim',
     config = function()
       require("smartcolumn").setup({
-        colorcolumn = 80,
+        colorcolumn = '80',
         disabled_filetypes = {
           'help', 'html', 'markdown', 'text', 'xhtml',
         },
@@ -287,16 +287,13 @@ require("lazy").setup({
       'lukas-reineke/lsp-format.nvim',
       -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
-      {
-        'lvimuser/lsp-inlayhints.nvim',
-        commit = '9bcd6fe25417b7808fe039ab63d4224f2071d24a',
-      },
     },
     config = function() require('plugins.lspconfig') end,
     keys = {
-      { 'K',  function() vim.lsp.buf.hover() end },
       { 'gd', function() vim.lsp.buf.definition() end },
       { 'gD', function() vim.lsp.buf.type_definition() end },
+      --
+      { 'gI', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ nil })) end },
       --
       {
         '<leader>ca',
@@ -308,9 +305,6 @@ require("lazy").setup({
       },
       { '<leader>F', function() vim.lsp.buf.format({ async = true }) end },
       { '<leader>R', function() vim.lsp.buf.rename() end },
-      --
-      { '[d',        function() vim.diagnostic.goto_prev() end },
-      { ']d',        function() vim.diagnostic.goto_next() end },
       --
       { 'gwa',       function() vim.lsp.buf.add_workspace_folder() end },
       { 'gwr',       function() vim.lsp.buf.remove_workspace_folder() end },
@@ -412,8 +406,11 @@ require("lazy").setup({
     ft = { 'ruby', 'lua', 'vimscript', 'bash' },
   },
   {
-    'terrortylor/nvim-comment',
-    config = function() require('nvim_comment').setup() end,
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    config = function()
+      require("ts_context_commentstring").setup {}
+      vim.g.skip_ts_context_commentstring_module = true
+    end
   },
   {
     'Wansmer/treesj',
