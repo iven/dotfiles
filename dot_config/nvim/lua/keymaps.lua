@@ -48,7 +48,6 @@ vim.keymap.set('n', '<leader>W', '<cmd>SudoWrite<cr>')
 vim.keymap.set('n', '<leader>q', '<cmd>qa!<cr>')
 
 -- 快速编辑和重载 init.lua
-vim.keymap.set('n', '<leader>s', '<cmd>runtime init.lua<cr>')
 vim.keymap.set('n', '<leader>e', '<cmd>e ~/.local/share/chezmoi/dot_config/nvim/init.lua<cr>')
 
 -- 快速打开 Lazy

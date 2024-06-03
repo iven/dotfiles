@@ -87,7 +87,6 @@ require("lazy").setup({
   },
   {
     'akinsho/bufferline.nvim',
-    version = "^3.1.0",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('plugins.bufferline')
@@ -130,7 +129,7 @@ require("lazy").setup({
     config = function()
       require('lualine').setup {
         sections = {
-          lualine_b = { 'filename', 'progress', 'diff', 'diagnostic' },
+          lualine_b = { 'filename', 'progress', 'diff', 'diagnostics' },
           lualine_c = {
             {
               require("noice").api.status.message.get,
@@ -295,6 +294,9 @@ require("lazy").setup({
       --
       { 'gI', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ nil })) end },
       --
+      { '[d', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end },
+      { ']d', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end },
+      --
       {
         '<leader>ca',
         function()
@@ -350,11 +352,13 @@ require("lazy").setup({
       require('trouble').setup {
         auto_close = true,
         auto_jump = { 'lsp_definitions', 'lsp_type_definitions' },
+        focus = true,
+        pinned = true,
       }
     end,
     keys = {
-      { '<leader>d', function() require('trouble').toggle({ mode = 'document_diagnostics' }) end },
-      { '<leader>D', function() require('trouble').toggle({ mode = 'workspace_diagnostics' }) end },
+      { '<leader>d', function() require('trouble').toggle({ mode = 'diagnostics', filter = { buf = 0, severity = vim.diagnostic.severity.ERROR } }) end },
+      { '<leader>D', function() require('trouble').toggle({ mode = 'diagnostics', filter = { vim.diagnostic.severity.ERROR } }) end },
       { 'gr',        function() require('trouble').toggle({ mode = 'lsp_references' }) end },
       { 'gi',        function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
     },
