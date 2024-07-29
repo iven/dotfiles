@@ -16,38 +16,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
     lsp_format.on_attach(client)
-    if client.server_capabilities.documentSymbolProvider then
-      navic.attach(client, bufnr)
-    end
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable()
+
+    if client then
+      if client.server_capabilities.documentSymbolProvider then
+        if client.name ~= "volar" then
+          navic.attach(client, bufnr)
+        end
+      end
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable()
+      end
     end
   end
 })
 
 lsp_format.setup()
 
-local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
-for _, lsp in pairs(servers) do
-  lspconfig[lsp].setup {
-    capabilities = capabilities,
-  }
-end
-
 lspconfig['clangd'].setup {
   capabilities = clangd_capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
-lspconfig['nil_ls'].setup {
+lspconfig['cmake'].setup {
   capabilities = capabilities,
-  settings = {
-    ['nil'] = {
-      formatting = {
-        command = { "nixpkgs-fmt" },
-      },
-    },
-  },
+}
+
+lspconfig['gopls'].setup {
+  capabilities = capabilities,
 }
 
 lspconfig['lua_ls'].setup {
@@ -87,6 +82,48 @@ lspconfig['lua_ls'].setup {
     "selene.yml",
     ".git"
   ),
+}
+
+lspconfig['nil_ls'].setup {
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      },
+    },
+  },
+}
+
+lspconfig['pyright'].setup {
+  capabilities = capabilities,
+}
+
+lspconfig['rust_analyzer'].setup {
+  capabilities = capabilities,
+}
+
+lspconfig['tsserver'].setup {
+  capabilities = capabilities,
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/lib/node_modules/@vue/typescript-plugin",
+        languages = { "javascript", "typescript", "vue" },
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
+}
+
+-- sudo npm install -g @vue/typescript-plugin @vue/language-server
+lspconfig['volar'].setup {
+  capabilities = capabilities,
 }
 
 -- 为 LSP 浮动窗口添加边框

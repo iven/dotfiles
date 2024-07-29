@@ -119,6 +119,7 @@ require("lazy").setup({
         attach_navic = false,
         show_modified = true,
       }
+      vim.g.navic_silence = true
     end,
   },
   {
