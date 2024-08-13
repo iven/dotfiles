@@ -36,7 +36,7 @@ if status is-interactive
 
     abbr -a cpr cp -r
     abbr -a rmr rm -Irf
-    abbr -a pg pgrep -af
+    abbr -a pg pgrep -alf
 
     if command -sq bat; or command -sq batcat
         if command -sq bat
