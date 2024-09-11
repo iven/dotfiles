@@ -38,6 +38,7 @@ vim.opt.inccommand = 'split' -- 即时显示替换结果
 vim.opt.conceallevel = 0     -- 禁止 JSON, Markdown 等文件隐藏特定语法相关字符的行为
 vim.opt.list = true
 vim.opt.listchars:append('tab:··,trail: ,extends:↷,precedes:↶')
+vim.opt.splitkeep = "screen" -- https://github.com/yetone/avante.nvim
 
 -----------------------------------------------------------
 -- Tabs, indent

@@ -41,6 +41,7 @@ require("nvim-treesitter.configs").setup {
   },
   indent = {
     enable = true,
+    disable = { 'yaml' },
   },
   auto_install = false,
   modules = {},
