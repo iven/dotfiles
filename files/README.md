@@ -27,3 +27,10 @@
     ```bash
     $ home-manager switch --flake '.#<profile>'
     ```
+
+## 清理存储
+
+```bash
+$ nix-store --gc
+$ nix-collect-garbage --delete-old
+```
