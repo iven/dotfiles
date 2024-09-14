@@ -9,7 +9,7 @@ insert_final_newline=true
 max_line_width=120
 trim_trailing_whitespace=false
 
-[*.{css,html,js,json,lua,nix,scss,xhtml,xml,yaml}]
+[*.{css,html,js,json,lua,nix,scss,xhtml,xml}]
 indent_size=2
 
 [Makefile]
