@@ -103,7 +103,7 @@ lspconfig['rust_analyzer'].setup {
   capabilities = capabilities,
 }
 
-lspconfig['tsserver'].setup {
+lspconfig['ts_ls'].setup {
   capabilities = capabilities,
   init_options = {
     plugins = {
@@ -116,7 +116,11 @@ lspconfig['tsserver'].setup {
   },
   filetypes = {
     "javascript",
+    "javascriptreact",
+    "javascript.jsx",
     "typescript",
+    "typescriptreact",
+    "typescript.tsx",
     "vue",
   },
 }
