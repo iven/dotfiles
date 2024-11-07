@@ -16,6 +16,7 @@
       pkgs.getent
       pkgs.git
       pkgs.grc
+      pkgs.httpie
       pkgs.htop
       pkgs.lazygit
       pkgs.sumneko-lua-language-server

@@ -42,5 +42,5 @@ telescope.setup {
     },
   }
 }
-telescope.load_extension('fzf')
+telescope.load_extension('fzy_native')
 telescope.load_extension('ui-select')

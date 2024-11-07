@@ -34,7 +34,7 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       'nvim-telescope/telescope-ui-select.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make -C deps/fzy-lua-native' },
     },
     config = function() require('plugins.telescope') end,
     keys = {
@@ -346,12 +346,13 @@ require("lazy").setup({
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    lazy = false,
     build = "make",
     opts = {
       provider = "openai",
       openai = {
-        endpoint = "https://api.deepbricks.ai/v1",
-        model = "gpt-4o",
+        endpoint = "https://api.x.ai/v1",
+        model = "grok-beta",
       },
     },
     dependencies = {
