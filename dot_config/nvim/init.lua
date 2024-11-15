@@ -315,6 +315,20 @@ require("lazy").setup({
     },
   },
   {
+    'stevearc/conform.nvim',
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          python = { "isort", "ruff_format" },
+        },
+        format_on_save = {
+          lsp_format = "fallback",
+          timeout_ms = 500,
+        },
+      })
+    end
+  },
+  {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
