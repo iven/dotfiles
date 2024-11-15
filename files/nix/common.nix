@@ -18,6 +18,7 @@
       pkgs.grc
       pkgs.httpie
       pkgs.htop
+      pkgs.isort
       pkgs.lazygit
       pkgs.sumneko-lua-language-server
       pkgs.nil
@@ -25,6 +26,7 @@
       pkgs.nixpkgs-fmt
       pkgs.pyright
       pkgs.ripgrep
+      pkgs.ruff
       pkgs.rust-analyzer
       pkgs.rustfmt
       pkgs.starship
