@@ -139,6 +139,11 @@ if status is-interactive
         set fzf_preview_dir_cmd eza --all --color=always
     end
 
+    if command -sq direnv
+        set -gx DIRENV_LOG_FORMAT ""
+        direnv hook fish | source
+    end
+
     ########## 其他 ##########
 
     if command -sq starship
