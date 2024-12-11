@@ -353,7 +353,17 @@ require("lazy").setup({
       "hrsh7th/nvim-cmp",
     },
     config = function()
-      require("codeium").setup({})
+      require("codeium").setup({
+        virtual_text = {
+          enabled = true,
+          idle_delay = 0,
+          key_bindings = {
+            accept = '<c-f>',
+            prev = '<c-k>',
+            next = '<c-j>',
+          }
+        }
+      })
     end,
     event = 'InsertEnter',
   },
