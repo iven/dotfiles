@@ -38,7 +38,9 @@ telescope.setup {
       -- }
     },
     undo = {
-      diff_context_lines = 5,
+      vim_diff_opts = {
+        ctxlen = 3,
+      },
     },
   }
 }

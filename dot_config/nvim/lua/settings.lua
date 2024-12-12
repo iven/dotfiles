@@ -10,9 +10,9 @@
 -- General
 -----------------------------------------------------------
 vim.opt.fileencodings = 'ucs-bom,utf-8,gb18030,gb2312,gbk,cp936'
-vim.opt.mouse = 'a'               -- Enable mouse support
+vim.opt.mouse = 'a' -- Enable mouse support
 vim.opt.mousemoveevent = true
-vim.opt.clipboard = 'unnamedplus' -- 使用系统剪贴板，需要安装 xclip 或者 wl-clipboard
+-- vim.opt.clipboard = 'unnamedplus' -- 使用系统剪贴板，需要安装 xclip 或者 wl-clipboard
 vim.opt.swapfile = false          -- Don't use swapfile
 vim.opt.undofile = true           -- 保存 Undo 历史
 vim.opt.autochdir = true          -- 随编辑文件自动跳转目录
@@ -88,6 +88,22 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
 end
+
+-----------------------------------------------------------
+-- Clipboard
+-----------------------------------------------------------
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
 -----------------------------------------------------------
 -- Autocommands

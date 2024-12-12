@@ -17,13 +17,6 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-  -- https://github.com/neovim/neovim/issues/12587
-  {
-    'antoinemadec/FixCursorHold.nvim',
-    config = function()
-      vim.g.cursorhold_updatetime = 100
-    end,
-  },
   {
     'mhinz/vim-startify',
     config = function() require('plugins.startify') end,
@@ -515,18 +508,6 @@ require("lazy").setup({
     },
   },
   {
-    'ojroques/nvim-osc52',
-    config = function()
-      require('osc52').setup {
-        max_length = 1000000,
-      }
-      -- 不知道为啥，用 Lazy 的写法不好使
-      vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, { expr = true })
-      vim.keymap.set('n', '<leader>cc', '<leader>c_', { remap = true })
-      vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
-    end,
-  },
-  {
     "akinsho/toggleterm.nvim",
     version = '*',
     config = function()
@@ -539,11 +520,6 @@ require("lazy").setup({
         },
       }
     end,
-  },
-  {
-    'aserowy/tmux.nvim',
-    config = function() require('plugins.tmux') end,
-    enabled = false,
   },
   {
     'knubie/vim-kitty-navigator',
