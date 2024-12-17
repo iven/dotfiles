@@ -427,7 +427,7 @@ require("lazy").setup({
       }
     },
     keys = {
-      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      -- { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
       { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
       { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
       { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
@@ -477,10 +477,10 @@ require("lazy").setup({
       { '<C-w>', function() require('readline').backward_kill_word() end, mode = '!' },
       { '<C-k>', function() require('readline').kill_line() end,          mode = '!' },
       { '<C-u>', function() require('readline').backward_kill_line() end, mode = '!' },
-      { '<C-f>', '<Right>',                                               mode = '!' },
-      { '<C-b>', '<Left>',                                                mode = '!' },
-      { '<C-n>', '<Down>',                                                mode = '!' },
-      { '<C-p>', '<Up>',                                                  mode = '!' },
+      -- { '<C-f>', '<Right>',                                               mode = '!' },
+      -- { '<C-b>', '<Left>',                                                mode = '!' },
+      -- { '<C-n>', '<Down>',                                                mode = '!' },
+      -- { '<C-p>', '<Up>',                                                  mode = '!' },
       { '<C-d>', '<Delete>',                                              mode = '!' },
       { '<C-h>', '<BS>',                                                  mode = '!' },
     },
@@ -489,7 +489,18 @@ require("lazy").setup({
     'tpope/vim-abolish',
     cmd = 'S',
   },
-  'mg979/vim-visual-multi',
+  {
+    'mg979/vim-visual-multi',
+    config = function()
+      local VM_maps = vim.g.VM_maps or {}
+      VM_maps["Select Operator"] = ''
+      vim.g.VM_maps = VM_maps
+
+      local VM_custom_remaps = vim.g.VM_custom_remaps or {}
+      VM_custom_remaps["s"] = 'c'
+      vim.g.VM_custom_remaps = VM_custom_remaps
+    end
+  },
   -- 其他
   {
     'dinhhuy258/git.nvim',
