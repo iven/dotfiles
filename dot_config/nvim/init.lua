@@ -362,6 +362,7 @@ require("lazy").setup({
   },
   {
     "yetone/avante.nvim",
+    enabled = vim.fn.has('nvim-0.10.0') == 1,
     event = "VeryLazy",
     lazy = false,
     build = "make",
