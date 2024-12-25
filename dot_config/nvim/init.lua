@@ -309,6 +309,7 @@ require("lazy").setup({
   },
   {
     'stevearc/conform.nvim',
+    enabled = vim.fn.has('nvim-0.10.0') == 1,
     config = function()
       require("conform").setup({
         formatters_by_ft = {
