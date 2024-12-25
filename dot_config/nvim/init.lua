@@ -368,9 +368,14 @@ require("lazy").setup({
     opts = {
       provider = "openai",
       openai = {
-        endpoint = "https://api.x.ai/v1",
-        model = "grok-beta",
+        endpoint = "https://api.deepbricks.ai/v1/",
+        model = "claude-3.5-sonnet",
       },
+      mappings = {
+        submit = {
+          insert = "<cr>",
+        },
+      }
     },
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons

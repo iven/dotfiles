@@ -30,12 +30,12 @@ vim.g.startify_lists = {
     header = { '   会话列表：' },
   },
   {
-    type = 'dir',
-    header = { '   当前目录 [ ' .. vim.fn.getcwd() .. ' ]：' },
+    type = 'files',
+    header = { '   最近使用：' },
   },
   {
-    type = 'files',
-    header = { '   最常使用：' },
+    type = 'dir',
+    header = { '   当前目录 [ ' .. vim.fn.getcwd() .. ' ]：' },
   },
   {
     type = 'bookmarks',
