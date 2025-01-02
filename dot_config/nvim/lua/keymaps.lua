@@ -35,7 +35,6 @@ vim.keymap.set('n', '<C-LeftMouse>', '<Nop>')
 
 -- Fast saving with <leader> and w
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
-vim.keymap.set('n', '<leader>W', '<cmd>SudoWrite<cr>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
 -- vim-kitty-navigator 已经提供此功能
