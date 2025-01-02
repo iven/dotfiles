@@ -524,6 +524,9 @@ require("lazy").setup({
     cmd = {
       'SudoEdit', 'SudoWrite', 'Remove', 'Rename', 'Delete', 'Move', 'Unlink',
     },
+    keys = {
+      { '<leader>W', '<cmd>SudoWrite<cr>', mode = 'n' },
+    },
   },
   {
     "akinsho/toggleterm.nvim",
