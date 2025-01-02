@@ -167,7 +167,16 @@ class Searcher:
         """运行 ripgrep 命令并返回 JSON 输出"""
         try:
             return subprocess.check_output(
-                ["rg", "--json", "-S", "--hidden", self.search_term], text=True
+                [
+                    "rg",
+                    "--json",
+                    "-S",
+                    "--hidden",
+                    "-g",
+                    "!**/.git/**",
+                    self.search_term,
+                ],
+                text=True,
             )
         except subprocess.CalledProcessError as e:
             if e.returncode == 1:  # rg returns 1 when no matches found
@@ -189,7 +198,11 @@ class Searcher:
 
     def _handle_match(self, match_data: dict, file_path: Path) -> None:
         """处理单个匹配结果"""
-        description = match_data["lines"]["text"].rstrip()
+        lines = match_data["lines"]
+        try:
+            description = lines["text"].rstrip()
+        except KeyError:
+            description = lines["bytes"].rstrip()
 
         try:
             match_index = description.lower().index(self.search_term.lower())
@@ -256,9 +269,6 @@ class App:
 
         except AppError as e:
             print(f"错误：{str(e)}", file=sys.stderr)
-            sys.exit(1)
-        except Exception as e:
-            print(f"未知错误：{str(e)}", file=sys.stderr)
             sys.exit(1)
 
     def _run_jumper(self, args: List[str]) -> None:
