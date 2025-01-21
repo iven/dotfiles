@@ -1,4 +1,6 @@
 --italic-text='always'
 --pager='less -FMRX'
 --style='header,grid,snip'
---theme='1337'
+--theme='auto'
+--theme-light='GitHub'
+--theme-dark='1337'

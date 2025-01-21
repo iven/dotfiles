@@ -41,9 +41,7 @@ if status is-interactive
     if command -sq bat; or command -sq batcat
         if command -sq bat
             alias cat bat
-        end
-
-        if command -sq batcat
+        else if command -sq batcat
             alias cat batcat
         end
     end
