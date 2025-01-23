@@ -366,6 +366,7 @@ require("lazy").setup({
   },
   {
     "olimorris/codecompanion.nvim",
+    cond = vim.fn.has('nvim-0.10.0') == 1,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
