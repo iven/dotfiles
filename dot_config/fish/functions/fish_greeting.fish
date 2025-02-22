@@ -1,7 +1,7 @@
 function fish_greeting
-    if type -q archey
+    if type -q fastfetch
         echo
-        archey
+        fastfetch
         echo
     end
 
