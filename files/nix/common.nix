@@ -9,6 +9,7 @@
       pkgs.chezmoi
       pkgs.delta
       pkgs.eza
+      pkgs.fastfetch
       pkgs.fd
       pkgs.fish
       pkgs.fx
@@ -31,6 +32,7 @@
       pkgs.rustfmt
       pkgs.starship
       pkgs.tig
+      pkgs.vscode-langservers-extracted
     ];
   };
   programs.home-manager.enable = true;
