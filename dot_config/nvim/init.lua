@@ -356,95 +356,61 @@ require("lazy").setup({
             prev = '<c-k>',
             next = '<c-j>',
           },
-          filetypes = {
-            codecompanion = false,
-          },
         }
       })
     end,
     event = 'InsertEnter',
   },
   {
-    "olimorris/codecompanion.nvim",
+    "yetone/avante.nvim",
     cond = vim.fn.has('nvim-0.10.0') == 1,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
-    },
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "openai",
-            keymaps = {
-              send = {
-                modes = {
-                  i = "<c-cr>",
-                },
-              },
-              close = {
-                modes = {
-                  n = "q",
-                },
-              },
-            },
-            slash_commands = {
-              ["buffer"] = {
-                opts = {
-                  provider = "telescope",
-                },
-              },
-              ["file"] = {
-                opts = {
-                  provider = "telescope",
-                },
-              },
-              ["symbols"] = {
-                opts = {
-                  provider = "telescope",
-                },
-              },
-            },
-          },
-          inline = {
-            adapter = "openai",
-          },
-          cmdline = {
-            adapter = "openai",
-          },
-        },
-        adapters = {
-          openai = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              schema = {
-                model = {
-                  default = "claude-3.5-sonnet",
-                },
-              },
-              env = {
-                url = "https://api.deepbricks.ai",
-                api_key = "OPENAI_API_KEY",
-              },
-            })
-          end
-        },
-        display = {
-          action_palette = {
-            provider = "telescope",
-          },
-        },
-        opts = {
-          language = "中文",
-        },
-      })
-    end,
-    keys = {
-      { "<leader>cc", mode = { "n", "v" }, "<cmd>CodeCompanionChat Toggle<cr>", desc = "开启 CodeCompanionChat" },
-      { "<leader>ce", mode = { "v" }, function() require("codecompanion").prompt("explain") end, desc = "解释代码" },
-      { "<leader>ct", mode = { "v" }, function() require("codecompanion").prompt("tests") end, desc = "生成单元测试" },
-    },
+    event = "VeryLazy",
     lazy = false,
+    build = "make",
+    opts = {
+      provider = "openai",
+      openai = {
+        endpoint = "https://api.deepbricks.ai/v1/",
+        model = "gpt-4o",
+      },
+      cursor_applying_provider = 'groq', -- In this example, use Groq for applying, but you can also use any provider you want.
+      behaviour = {
+        --- ... existing behaviours
+        enable_cursor_planning_mode = true, -- enable cursor planning mode!
+      },
+      rag_service = {
+        enabled = false, -- Enables the rag service, requires OPENAI_API_KEY to be set
+      },
+      vendors = {
+        --- ... existing vendors
+        groq = { -- define groq provider
+          __inherited_from = 'openai',
+          api_key_name = 'GROQ_API_KEY',
+          endpoint = 'https://api.groq.com/openai/v1/',
+          model = 'llama-3.3-70b-versatile',
+          max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+        },
+      },
+      mappings = {
+        submit = {
+          insert = "<cr>",
+        },
+      }
+    },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below is optional, make sure to setup it properly if you have lazy=true
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
   },
   {
     'folke/trouble.nvim',
