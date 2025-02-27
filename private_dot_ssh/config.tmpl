@@ -32,6 +32,7 @@ Host *wukong-*
 
 Host *-wukong-cpu*
   User maintain
+  ProxyJump {{ .user.ldap }}@access:60022
 
 Host *-wukong-mini* wukong-dev*
   User wukong
@@ -39,9 +40,6 @@ Host *-wukong-mini* wukong-dev*
 Host wukong-dev
   Port 4026
   LocalForward 3000 localhost:3000
-
-Host wukong-dev2
-  Port 4022
 
 Host iven-mbp
   HostName 172.29.78.172
