@@ -17,7 +17,6 @@
       pkgs.getent
       pkgs.git
       pkgs.grc
-      pkgs.httpie
       pkgs.htop
       pkgs.isort
       pkgs.lazygit
@@ -33,6 +32,7 @@
       pkgs.starship
       pkgs.tig
       pkgs.vscode-langservers-extracted
+      pkgs.xh
     ];
   };
   programs.home-manager.enable = true;
