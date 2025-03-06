@@ -42,6 +42,10 @@ lspconfig['cmake'].setup {
   capabilities = capabilities,
 }
 
+lspconfig['djlsp'].setup {
+  capabilities = capabilities,
+}
+
 lspconfig['gopls'].setup {
   capabilities = capabilities,
 }
