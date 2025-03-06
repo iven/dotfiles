@@ -32,7 +32,6 @@ Host *wukong-*
 
 Host *-wukong-cpu*
   User maintain
-  ProxyJump {{ .user.ldap }}@access:60022
 
 Host *-wukong-mini* wukong-dev*
   User wukong
