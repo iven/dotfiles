@@ -47,9 +47,6 @@ require("lazy").setup({
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
-    config = function()
-      require('telescope').load_extension('undo')
-    end,
     keys = {
       { "<leader>u", "<cmd>Telescope undo<cr>" },
     },
@@ -333,10 +330,13 @@ require("lazy").setup({
       require("conform").setup({
         formatters_by_ft = {
           python = { "isort", "ruff_format" },
+          javascript = { "prettier" },
+          css = { "prettier" },
+          json = { "prettier" },
         },
         format_on_save = {
           lsp_format = "fallback",
-          timeout_ms = 500,
+          timeout_ms = 1000,
         },
       })
     end

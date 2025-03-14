@@ -19,6 +19,7 @@ Match exec "getent hosts %h | grep -qE '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-
   # 内网禁掉压缩
   Compression no
   # Gnupg 和 SSH 转发
+  # 首次使用还需要将 pubkey_new.asc 传到远程机器并 gpg --import 一下
   RemoteForward /home/%r/.gnupg/S.gpg-agent [%d/.gnupg/S.gpg-agent.extra]:
   RemoteForward /home/%r/.gnupg/S.gpg-agent.ssh [%d/.gnupg/S.gpg-agent.ssh]:
   # 内网不检查 Host Key
@@ -38,7 +39,6 @@ Host *-wukong-mini* wukong-dev*
 
 Host wukong-dev
   Port 4026
-  LocalForward 3000 localhost:3000
 
 Host iven-mbp
   HostName 172.29.78.172
