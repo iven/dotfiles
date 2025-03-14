@@ -104,8 +104,15 @@ lspconfig['nil_ls'].setup {
   },
 }
 
-lspconfig['pyright'].setup {
+lspconfig['basedpyright'].setup {
   capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "standard",
+      },
+    },
+  },
 }
 
 lspconfig['rust_analyzer'].setup {

@@ -41,8 +41,17 @@ telescope.setup {
       vim_diff_opts = {
         ctxlen = 3,
       },
+      mappings = {
+        i = {
+          ["<cr>"] = require("telescope-undo.actions").restore,
+        },
+        n = {
+          ["u"] = require("telescope-undo.actions").restore,
+        },
+      },
     },
   }
 }
 telescope.load_extension('fzy_native')
 telescope.load_extension('ui-select')
+telescope.load_extension('undo')

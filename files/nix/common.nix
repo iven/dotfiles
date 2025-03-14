@@ -4,6 +4,7 @@
     stateVersion = "23.05";
     enableNixpkgsReleaseCheck = true;
     packages = [
+      pkgs.basedpyright
       pkgs.bat
       pkgs.btop
       pkgs.chezmoi
@@ -24,12 +25,12 @@
       pkgs.nil
       pkgs.nix-index
       pkgs.nixpkgs-fmt
-      pkgs.pyright
       pkgs.ripgrep
       pkgs.ruff
       pkgs.rust-analyzer
       pkgs.rustfmt
       pkgs.starship
+      pkgs.typescript-language-server
       pkgs.tig
       pkgs.vscode-langservers-extracted
       pkgs.xh
