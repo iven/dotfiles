@@ -329,7 +329,7 @@ require("lazy").setup({
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          python = { "isort", "ruff_format" },
+          python = { "ruff_organize_imports", "ruff_format" },
           javascript = { "prettier" },
           css = { "prettier" },
           json = { "prettier" },
