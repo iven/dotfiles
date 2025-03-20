@@ -8,6 +8,7 @@
       pkgs.bat
       pkgs.btop
       pkgs.chezmoi
+      pkgs.cmake-language-server
       pkgs.delta
       pkgs.eza
       pkgs.fastfetch
