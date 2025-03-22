@@ -190,7 +190,8 @@ require("lazy").setup({
         vim.api.nvim_command('colorscheme onedark')
       end,
       update_interval = 1000,
-      fallback = "dark"
+      -- 在官方方案合入前，先写死一个按时间来判断的逻辑
+      fallback = (tonumber(os.date("%H")) >= 6 and tonumber(os.date("%H")) < 18) and 'light' or 'dark',
     },
   },
   {

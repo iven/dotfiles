@@ -132,9 +132,9 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  pattern = '*.inc',
-  command = [[setfiletype cpp]],
-  desc = '将 inc 文件识别为 cpp',
+  pattern = '*.jinja',
+  command = [[setfiletype jinja]],
+  desc = '将 jinja 文件识别为 jinja',
   group = 'user_config',
 })
 
