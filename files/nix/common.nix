@@ -21,6 +21,7 @@
       pkgs.grc
       pkgs.htop
       pkgs.isort
+      pkgs.jinja-lsp
       pkgs.lazygit
       pkgs.sumneko-lua-language-server
       pkgs.nil

@@ -50,6 +50,10 @@ lspconfig['gopls'].setup {
   capabilities = capabilities,
 }
 
+lspconfig['jinja_lsp'].setup {
+  capabilities = capabilities,
+}
+
 lspconfig['jsonls'].setup {
   capabilities = capabilities,
 }
