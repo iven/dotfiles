@@ -1,7 +1,6 @@
 local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local lsp_format = require("lsp-format")
 local navic = require("nvim-navic")
 
 local runtime_path = vim.split(package.path, ';')
@@ -16,8 +15,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    lsp_format.on_attach(client)
-
     if client then
       if client.server_capabilities.documentSymbolProvider then
         if client.name ~= "volar" then
@@ -30,8 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end
 })
-
-lsp_format.setup()
 
 lspconfig['clangd'].setup {
   capabilities = clangd_capabilities,

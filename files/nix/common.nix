@@ -4,6 +4,7 @@
     stateVersion = "23.05";
     enableNixpkgsReleaseCheck = true;
     packages = [
+      pkgs.aider-chat
       pkgs.basedpyright
       pkgs.bat
       pkgs.btop
