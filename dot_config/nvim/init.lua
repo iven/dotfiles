@@ -293,8 +293,6 @@ require("lazy").setup({
     dependencies = {
       -- 启用基于 LSP 的自动补全
       'hrsh7th/cmp-nvim-lsp',
-      -- 保存时自动格式化文件
-      'lukas-reineke/lsp-format.nvim',
       -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
     },
@@ -327,20 +325,29 @@ require("lazy").setup({
   {
     'stevearc/conform.nvim',
     cond = vim.fn.has('nvim-0.10.0') == 1,
-    config = function()
-      require("conform").setup({
-        formatters_by_ft = {
-          python = { "ruff_organize_imports", "ruff_format" },
-          javascript = { "prettier" },
-          css = { "prettier" },
-          json = { "prettier" },
-        },
-        format_on_save = {
-          lsp_format = "fallback",
-          timeout_ms = 1000,
-        },
-      })
-    end
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        python = { "ruff_organize_imports", "ruff_format" },
+        javascript = { "prettier" },
+        css = { "prettier" },
+        json = { "prettier" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
+      format_on_save = function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
+        return { timeout_ms = 1000, lsp_format = "fallback" }
+      end,
+    },
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
   {
     'hrsh7th/nvim-cmp',
