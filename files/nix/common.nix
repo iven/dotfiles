@@ -8,6 +8,7 @@
       pkgs.basedpyright
       pkgs.bat
       pkgs.btop
+      pkgs.cargo
       pkgs.chezmoi
       pkgs.cmake-language-server
       pkgs.delta
@@ -41,16 +42,13 @@
     ];
   };
   programs.home-manager.enable = true;
-  # # nix 的 neovim 的 treesitter 不好使，禁用
-  # # https://github.com/NixOS/nixpkgs/issues/207003
-  # programs.neovim = {
-  #   enable = true;
-  #   package = pkgs.nix;
-  #   defaultEditor = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   vimdiffAlias = true;
-  #   withPython3 = false;
-  #   withRuby = false;
-  # };
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    withPython3 = false;
+    withRuby = false;
+  };
 }
