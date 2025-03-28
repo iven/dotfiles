@@ -18,6 +18,7 @@
       pkgs.fx
       pkgs.fzf
       pkgs.getent
+      pkgs.gersemi
       pkgs.git
       pkgs.grc
       pkgs.htop

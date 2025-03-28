@@ -333,6 +333,7 @@ require("lazy").setup({
         javascript = { "prettier" },
         css = { "prettier" },
         json = { "prettier" },
+        cmake = { "gersemi", timeout_ms = 2000 },
       },
       default_format_opts = {
         lsp_format = "fallback",
