@@ -171,24 +171,13 @@ require("lazy").setup({
     config = function() require('plugins.indent_blankline') end,
   },
   {
-    'navarasu/onedark.nvim',
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function() require('plugins.theme') end,
   },
   {
     "f-person/auto-dark-mode.nvim",
     opts = {
-      set_dark_mode = function()
-        vim.api.nvim_set_option_value("background", "dark", {})
-        require('onedark').set_options('style', 'dark')
-        require('onedark').set_options('toggle_style_index', 2)
-        vim.api.nvim_command('colorscheme onedark')
-      end,
-      set_light_mode = function()
-        vim.api.nvim_set_option_value("background", "light", {})
-        require('onedark').set_options('style', 'light')
-        require('onedark').set_options('toggle_style_index', 1)
-        vim.api.nvim_command('colorscheme onedark')
-      end,
       update_interval = 1000,
       -- 在官方方案合入前，先写死一个按时间来判断的逻辑
       fallback = (tonumber(os.date("%H")) >= 6 and tonumber(os.date("%H")) < 18) and 'light' or 'dark',
@@ -291,10 +280,10 @@ require("lazy").setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- 启用基于 LSP 的自动补全
-      'hrsh7th/cmp-nvim-lsp',
       -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
+      -- 自动补全
+      'saghen/blink.cmp',
     },
     config = function() require('plugins.lspconfig') end,
     keys = {
@@ -351,28 +340,87 @@ require("lazy").setup({
     end,
   },
   {
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lua',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
-      'lukas-reineke/cmp-under-comparator',
-      -- 在补全菜单显示类似 VSCode 的图标
-      'onsails/lspkind-nvim',
+      "xzbdmw/colorful-menu.nvim",
+      { "saghen/blink.compat", opts = { enable_events = true } },
     },
-    config = function() require('plugins.cmp') end,
-    event = 'InsertEnter',
+    -- 需要用 rustup 来装： rustup component add --toolchain nightly-aarch64-apple-darwin cargo
+    build = 'cargo build --release',
+    opts = {
+      keymap = {
+        preset = 'enter',
+        ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      },
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+          },
+        },
+        documentation = { auto_show = true },
+        keyword = { range = 'full' },
+        menu = {
+          draw = {
+            -- We don't need label_description now because label and label_description are already
+            -- combined together in label by colorful-menu.nvim.
+            columns = {
+              { "label",     gap = 1 },
+              { "kind_icon", "kind", gap = 1 },
+            },
+            components = {
+              label = {
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require("colorful-menu").blink_components_highlight(ctx)
+                end,
+              },
+            },
+          },
+        },
+      },
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
+        },
+      },
+      sources = {
+        default = { 'codeium', 'snippets', 'lsp', 'buffer', 'path' },
+        providers = {
+          -- Codeium 行为比较奇怪，只有在手动 C-n 的时候才会自动补全
+          codeium = {
+            name = "codeium",
+            module = "blink.compat.source",
+            async = true,
+            score_offset = 30,
+          },
+        },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      signature = { enabled = false },
+    },
+    opts_extend = { "sources.default" }
   },
   {
     "Exafunction/codeium.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "hrsh7th/nvim-cmp",
     },
     config = function()
       require("codeium").setup({
@@ -467,7 +515,9 @@ require("lazy").setup({
   -- 编辑
   {
     'windwp/nvim-autopairs',
-    config = function() require('plugins.nvim-autopairs') end,
+    opts = {
+      check_ts = true,
+    },
     event = 'InsertEnter',
   },
   {

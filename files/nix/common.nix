@@ -8,7 +8,6 @@
       pkgs.basedpyright
       pkgs.bat
       pkgs.btop
-      pkgs.cargo
       pkgs.chezmoi
       pkgs.cmake-language-server
       pkgs.delta
@@ -32,8 +31,7 @@
       pkgs.nixpkgs-fmt
       pkgs.ripgrep
       pkgs.ruff
-      pkgs.rust-analyzer
-      pkgs.rustfmt
+      pkgs.rustup
       pkgs.starship
       pkgs.typescript-language-server
       pkgs.tig
