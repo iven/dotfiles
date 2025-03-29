@@ -1,14 +1,21 @@
 local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local navic = require("nvim-navic")
+local blink = require("blink.cmp")
 
 local runtime_path = vim.split(package.path, ';')
-local capabilities = cmp_nvim_lsp.default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
--- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
-local clangd_capabilities = cmp_nvim_lsp.default_capabilities()
-clangd_capabilities.offsetEncoding = "utf-8"
+local capabilities = {
+  textDocument = {
+    completion = {
+      completionItem = {
+        snippetSupport = true,
+      },
+    }
+  },
+  -- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
+  offsetEncoding = "utf-8",
+}
+capabilities = blink.get_lsp_capabilities(capabilities)
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -29,7 +36,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 lspconfig['clangd'].setup {
-  capabilities = clangd_capabilities,
+  capabilities = capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
