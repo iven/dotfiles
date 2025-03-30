@@ -124,10 +124,10 @@ local mru_opts = {
 
 --- @param start number
 --- @param cwd string? optional
---- @param items_number number? optional number of items to generate, default = 10
+--- @param items_number number? optional number of items to generate, default = 8
 local function mru(start, cwd, items_number, opts)
   opts = opts or mru_opts
-  items_number = if_nil(items_number, 10)
+  items_number = if_nil(items_number, 8)
   local oldfiles = {}
   for _, v in pairs(vim.v.oldfiles) do
     if #oldfiles == items_number then
@@ -190,7 +190,7 @@ local section = {
       {
         type = "group",
         val = function()
-          return { mru(10) }
+          return { mru(8) }
         end,
       },
     },
@@ -213,13 +213,20 @@ local section = {
   bottom_buttons = {
     type = "group",
     val = {
-      button("e", "新建文件", "<cmd>ene <CR>"),
-      button("q", "退出", "<cmd>q <CR>"),
+      { type = "padding", val = 1 },
+      { type = "text", val = "常用命令", opts = { hl = "SpecialComment", shrink_margin = false } },
+      { type = "padding", val = 1 },
+      button("e", "新建文件", "<cmd>ene<CR>"),
+      button("l", "打开 Lazy", "<cmd>Lazy<CR>"),
+      button("q", "退出", "<cmd>q<CR>"),
     },
   },
   footer = {
     type = "text",
-    val = { "请帮助使用这台电脑的可怜儿童！" },
+    val = { "👶🏻 请帮助使用这台电脑的可怜儿童！" },
+    opts = {
+      hl = "Type",
+    },
   },
 }
 
@@ -231,7 +238,6 @@ local config = {
     section.top_buttons,
     section.mru_cwd,
     section.mru,
-    { type = "padding", val = 1 },
     section.bottom_buttons,
     { type = "padding", val = 1 },
     section.footer,

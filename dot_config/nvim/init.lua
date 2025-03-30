@@ -610,6 +610,29 @@ require("lazy").setup({
   },
   -- 其他
   {
+    'Shatur/neovim-session-manager',
+    config = function()
+      local config = require('session_manager.config')
+      require('session_manager').setup {
+        autoload_mode = config.AutoloadMode.GitSession,
+        autosave_ignore_dirs = {},
+        autosave_ignore_filetypes = {
+          'gitcommit',
+          'gitrebase',
+        },
+        autosave_ignore_buftypes = {},
+        autosave_only_in_session = true,
+        load_include_current = true,
+      }
+    end,
+    keys = {
+      { '<leader>ss', function() require('session_manager').save_current_session() end },
+      { '<leader>sl', function() require('session_manager').load_session() end },
+      { '<leader>sd', function() require('session_manager').delete_session() end },
+    },
+    lazy = false,
+  },
+  {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
