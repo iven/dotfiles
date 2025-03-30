@@ -12,6 +12,7 @@ set -gx VISUAL $EDITOR
 set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
+set -gx autovenv_announce false
 
 if test -f /etc/profile.d/99-wukong.sh; and type -q replay
     replay source /etc/profile.d/99-wukong.sh
