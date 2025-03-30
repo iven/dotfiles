@@ -97,25 +97,19 @@ require("lazy").setup({
     lazy = false,
   },
   {
-    "utilyre/barbecue.nvim",
-    version = "*",
+    "SmiteshP/nvim-navic",
     dependencies = {
       "neovim/nvim-lspconfig",
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
     },
-    config = function()
-      require("barbecue").setup {
-        attach_navic = false,
-        show_modified = true,
-      }
-      vim.g.navic_silence = true
-    end,
+    opts = {
+      separator = "  ",
+    },
   },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      { 'nvim-tree/nvim-web-devicons' },
+      'nvim-tree/nvim-web-devicons',
+      'neovim/nvim-lspconfig',
     },
     config = function()
       require('lualine').setup {
@@ -136,11 +130,48 @@ require("lazy").setup({
           lualine_y = { 'filetype' },
           lualine_z = { 'branch' },
         },
-        inactive_sections = {
+        winbar = {
           lualine_c = {
-            { 'filename', path = 2 },
+            {
+              'filetype',
+              icon_only = true,
+              separator = { left = '', right = '' },
+              padding = { left = 1, right = 0 },
+              cond = function()
+                return require("nvim-navic").is_available()
+              end
+            },
+            {
+              'filename',
+              padding = { left = 0, right = 1 },
+              cond = function()
+                return require("nvim-navic").is_available()
+              end
+            },
+            {
+              function()
+                return require("nvim-navic").get_location()
+              end,
+              cond = function()
+                return require("nvim-navic").is_available()
+              end
+            },
+          }
+        },
+        inactive_winbar = {
+          lualine_c = {
+            {
+              'filetype',
+              icon_only = true,
+              separator = { left = '', right = '' },
+              padding = { left = 1, right = 0 },
+            },
+            {
+              "filename",
+              path = 2,
+              padding = { left = 0, right = 1 },
+            },
           },
-          lualine_x = { 'branch' },
         },
       }
     end,

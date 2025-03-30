@@ -42,6 +42,7 @@ vim.opt.list = true
 vim.opt.listchars:append('tab:··,trail: ,extends:↷,precedes:↶')
 vim.opt.splitkeep = "screen" -- https://github.com/yetone/avante.nvim
 vim.opt.winborder = 'rounded'
+vim.opt.laststatus = 3       -- 全局状态栏
 
 -----------------------------------------------------------
 -- Tabs, indent
