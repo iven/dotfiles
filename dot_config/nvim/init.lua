@@ -18,8 +18,14 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
   {
-    'mhinz/vim-startify',
-    config = function() require('plugins.startify') end,
+    'goolord/alpha-nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require 'alpha'.setup(require 'plugins.startify'.config)
+    end
   },
   {
     'nvim-telescope/telescope.nvim',
