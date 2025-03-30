@@ -114,14 +114,14 @@ require("lazy").setup({
               separator = { left = '', right = '' },
               padding = { left = 1, right = 0 },
               cond = function()
-                return require("nvim-navic").is_available()
+                return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "nofile"
               end
             },
             {
               'filename',
               padding = { left = 0, right = 1 },
               cond = function()
-                return require("nvim-navic").is_available()
+                return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "nofile"
               end
             },
             {
@@ -141,11 +141,17 @@ require("lazy").setup({
               icon_only = true,
               separator = { left = '', right = '' },
               padding = { left = 1, right = 0 },
+              cond = function()
+                return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "nofile"
+              end
             },
             {
               "filename",
               path = 2,
               padding = { left = 0, right = 1 },
+              cond = function()
+                return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "nofile"
+              end
             },
           },
         },
