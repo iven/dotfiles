@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   home = {
     stateVersion = "23.05";
     enableNixpkgsReleaseCheck = true;
@@ -28,7 +27,7 @@
       pkgs.sumneko-lua-language-server
       pkgs.nil
       pkgs.nix-index
-      pkgs.nixpkgs-fmt
+      pkgs.nixfmt
       pkgs.ripgrep
       pkgs.ruff
       pkgs.rustup

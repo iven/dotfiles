@@ -1,21 +1,8 @@
 local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 local navic = require("nvim-navic")
-local blink = require("blink.cmp")
 
 local runtime_path = vim.split(package.path, ';')
-local capabilities = {
-  textDocument = {
-    completion = {
-      completionItem = {
-        snippetSupport = true,
-      },
-    }
-  },
-  -- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
-  offsetEncoding = "utf-8",
-}
-capabilities = blink.get_lsp_capabilities(capabilities)
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -35,33 +22,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end
 })
 
+lspconfig['basedpyright'].setup {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "standard",
+      },
+    },
+  },
+}
+
 lspconfig['clangd'].setup {
-  capabilities = capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
-lspconfig['cmake'].setup {
-  capabilities = capabilities,
-}
+lspconfig['cmake'].setup {}
 
-lspconfig['djlsp'].setup {
-  capabilities = capabilities,
-}
+lspconfig['djlsp'].setup {}
 
-lspconfig['gopls'].setup {
-  capabilities = capabilities,
-}
+lspconfig['gopls'].setup {}
 
-lspconfig['jinja_lsp'].setup {
-  capabilities = capabilities,
-}
+lspconfig['jinja_lsp'].setup {}
 
-lspconfig['jsonls'].setup {
-  capabilities = capabilities,
-}
+lspconfig['jsonls'].setup {}
 
 lspconfig['lua_ls'].setup {
-  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -100,7 +85,6 @@ lspconfig['lua_ls'].setup {
 }
 
 lspconfig['nil_ls'].setup {
-  capabilities = capabilities,
   settings = {
     ['nil'] = {
       formatting = {
@@ -110,23 +94,9 @@ lspconfig['nil_ls'].setup {
   },
 }
 
-lspconfig['basedpyright'].setup {
-  capabilities = capabilities,
-  settings = {
-    basedpyright = {
-      analysis = {
-        typeCheckingMode = "standard",
-      },
-    },
-  },
-}
-
-lspconfig['rust_analyzer'].setup {
-  capabilities = capabilities,
-}
+lspconfig['rust_analyzer'].setup {}
 
 lspconfig['ts_ls'].setup {
-  capabilities = capabilities,
   init_options = {
     plugins = {
       {
@@ -148,22 +118,14 @@ lspconfig['ts_ls'].setup {
 }
 
 -- sudo npm install -g @vue/typescript-plugin @vue/language-server
-lspconfig['volar'].setup {
-  capabilities = capabilities,
-}
-
--- 为 LSP 浮动窗口添加边框
--- https://vi.stackexchange.com/questions/39074/user-borders-around-lsp-floating-windows
-local _border = "rounded"
-
-require('lspconfig.ui.windows').default_options = {
-  border = _border
-}
+lspconfig['volar'].setup {}
 
 vim.diagnostic.config {
+  virtual_text = true,
   -- 输入时不实时提示错误
   update_in_insert = false,
-  float = {
-    border = _border,
+  -- 使用 [d 和 ]d 跳转的时候，仅跳转到错误
+  jump = {
+    severity = vim.diagnostic.severity.ERROR,
   },
 }
