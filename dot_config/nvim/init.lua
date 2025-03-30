@@ -95,11 +95,11 @@ require("lazy").setup({
             {
               require("noice").api.status.message.get,
               cond = require("noice").api.status.message.has,
-              color = { fg = "#8ebd6b" },
+              color = { fg = "#d7827e" },
             },
             {
               'searchcount',
-              color = { fg = "#8ebd6b" },
+              color = { fg = "#d7827e" },
             },
           },
           lualine_x = { 'fileformat' },
