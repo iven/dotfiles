@@ -17,6 +17,7 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
+  -- 外观
   {
     'goolord/alpha-nvim',
     dependencies = {
@@ -27,37 +28,6 @@ require("lazy").setup({
       require 'alpha'.setup(require 'plugins.startify'.config)
     end
   },
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'nvim-telescope/telescope-ui-select.nvim',
-      { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make -C deps/fzy-lua-native' },
-    },
-    config = function() require('plugins.telescope') end,
-    keys = {
-      { '<C-p>',     function() require('telescope.builtin').git_files() end },
-      { '<leader>f', function() require('telescope.builtin').find_files() end },
-      {
-        '<leader>a',
-        function()
-          local git_root, _ = require('telescope.utils').get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
-          require('telescope.builtin').live_grep { cwd = git_root[1] }
-        end,
-      },
-    },
-  },
-  {
-    'debugloop/telescope-undo.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
-    keys = {
-      { "<leader>u", "<cmd>Telescope undo<cr>" },
-    },
-  },
-  -- 外观
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -639,6 +609,36 @@ require("lazy").setup({
     end
   },
   -- 其他
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'nvim-telescope/telescope-ui-select.nvim',
+      { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make -C deps/fzy-lua-native' },
+    },
+    config = function() require('plugins.telescope') end,
+    keys = {
+      { '<C-p>',     function() require('telescope.builtin').git_files() end },
+      { '<leader>f', function() require('telescope.builtin').find_files() end },
+      {
+        '<leader>a',
+        function()
+          local git_root, _ = require('telescope.utils').get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
+          require('telescope.builtin').live_grep { cwd = git_root[1] }
+        end,
+      },
+    },
+  },
+  {
+    'debugloop/telescope-undo.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    keys = {
+      { "<leader>u", "<cmd>Telescope undo<cr>" },
+    },
+  },
   {
     'FabijanZulj/blame.nvim',
     config = function()
