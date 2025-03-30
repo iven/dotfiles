@@ -233,6 +233,8 @@ require("lazy").setup({
       require("noice").setup({
         views = {
           cmdline_popup = {
+            -- 等这个修复后移除： https://github.com/folke/noice.nvim/issues/1082#issuecomment-2757739573
+            border = { style = "none" },
             position = {
               row = -2,
               col = 6,
@@ -246,12 +248,9 @@ require("lazy").setup({
           },
         },
         lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
+          -- neovim 0.11 后不再需要
+          hover = { enabled = false },
+          signature = { enabled = false },
         },
         -- you can enable a preset for easier configuration
         presets = {
@@ -259,7 +258,6 @@ require("lazy").setup({
           command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
           inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = true,        -- add a border to hover docs and signature help
         },
         routes = {
           {
@@ -292,11 +290,8 @@ require("lazy").setup({
       --
       { 'gI', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ nil })) end },
       --
-      { '[d', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end },
-      { ']d', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end },
-      --
       {
-        '<leader>ca',
+        'gra',
         function()
           -- 加载 ui-select
           require('telescope')
@@ -304,7 +299,6 @@ require("lazy").setup({
         end,
       },
       { '<leader>F', function() vim.lsp.buf.format({ async = true }) end },
-      { '<leader>R', function() vim.lsp.buf.rename() end },
       --
       { 'gwa',       function() vim.lsp.buf.add_workspace_folder() end },
       { 'gwr',       function() vim.lsp.buf.remove_workspace_folder() end },
@@ -318,11 +312,12 @@ require("lazy").setup({
     cmd = { "ConformInfo" },
     opts = {
       formatters_by_ft = {
-        python = { "ruff_organize_imports", "ruff_format" },
-        javascript = { "prettier" },
-        css = { "prettier" },
-        json = { "prettier" },
         cmake = { "gersemi", timeout_ms = 2000 },
+        css = { "prettier" },
+        javascript = { "prettier" },
+        json = { "prettier" },
+        nix = { "nixfmt" },
+        python = { "ruff_organize_imports", "ruff_format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
@@ -412,6 +407,7 @@ require("lazy").setup({
         },
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
+      -- blink 的 signature 不知为何显示不全，所以暂时使用 C-s 手动触发
       signature = { enabled = false },
     },
     opts_extend = { "sources.default" }
@@ -506,8 +502,8 @@ require("lazy").setup({
     keys = {
       { '<leader>d', function() require('trouble').toggle({ mode = 'diagnostics', filter = { buf = 0, severity = vim.diagnostic.severity.ERROR } }) end },
       { '<leader>D', function() require('trouble').toggle({ mode = 'diagnostics', filter = { vim.diagnostic.severity.ERROR } }) end },
-      { 'gr',        function() require('trouble').toggle({ mode = 'lsp_references' }) end },
-      { 'gi',        function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
+      { 'grr',       function() require('trouble').toggle({ mode = 'lsp_references' }) end },
+      { 'gri',       function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
     },
     cmd = 'Trouble',
   },
