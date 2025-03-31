@@ -55,3 +55,10 @@ vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>')
 -- 防止误触
 vim.keymap.set('n', 'q:', '<esc>')
 vim.keymap.set({ 'n', 'i' }, '<F1>', '<esc>')
+
+-- 切换亮暗主题(set background)
+vim.keymap.set('n', '<leader>bg',
+  function()
+    vim.o.background = vim.o.background == 'dark' and 'light' or 'dark'
+  end
+)
