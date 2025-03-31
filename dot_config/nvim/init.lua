@@ -193,7 +193,7 @@ require("lazy").setup({
     opts = {
       update_interval = 1000,
       -- 在官方方案合入前，先写死一个按时间来判断的逻辑
-      fallback = (tonumber(os.date("%H")) >= 6 and tonumber(os.date("%H")) < 18) and 'light' or 'dark',
+      fallback = (tonumber(os.date("%H")) >= 22 or tonumber(os.date("%H")) < 10) and 'light' or 'dark',
     },
   },
   {
@@ -238,6 +238,7 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -245,6 +246,18 @@ require("lazy").setup({
     config = function()
       require("noice").setup({
         views = {
+          popup = {
+            border = { style = "none" },
+          },
+          confirm = {
+            border = { style = "none" },
+          },
+          hover = {
+            border = { style = "none" },
+          },
+          cmdline = {
+            border = { style = "none" },
+          },
           cmdline_popup = {
             -- 等这个修复后移除： https://github.com/folke/noice.nvim/issues/1082#issuecomment-2757739573
             border = { style = "none" },
@@ -254,6 +267,7 @@ require("lazy").setup({
             },
           },
           popupmenu = {
+            border = { style = "none" },
             position = {
               row = -5,
               col = 5,
