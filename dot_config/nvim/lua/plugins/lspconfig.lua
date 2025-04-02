@@ -1,8 +1,12 @@
 local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 local navic = require("nvim-navic")
+local blink = require("blink.cmp")
 
 local runtime_path = vim.split(package.path, ';')
+-- 在 lsp-config 解决 issue 前，仍然需要 capabilities
+-- https://cmp.saghen.dev/installation#lsp-capabilities
+local capabilities = blink.get_lsp_capabilities()
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -23,6 +27,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 lspconfig['basedpyright'].setup {
+  capabilities = capabilities,
   settings = {
     basedpyright = {
       analysis = {
@@ -33,20 +38,32 @@ lspconfig['basedpyright'].setup {
 }
 
 lspconfig['clangd'].setup {
+  capabilities = capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
-lspconfig['cmake'].setup {}
+lspconfig['cmake'].setup {
+  capabilities = capabilities,
+}
 
-lspconfig['djlsp'].setup {}
+lspconfig['djlsp'].setup {
+  capabilities = capabilities,
+}
 
-lspconfig['gopls'].setup {}
+lspconfig['gopls'].setup {
+  capabilities = capabilities,
+}
 
-lspconfig['jinja_lsp'].setup {}
+lspconfig['jinja_lsp'].setup {
+  capabilities = capabilities,
+}
 
-lspconfig['jsonls'].setup {}
+lspconfig['jsonls'].setup {
+  capabilities = capabilities,
+}
 
 lspconfig['lua_ls'].setup {
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -85,6 +102,7 @@ lspconfig['lua_ls'].setup {
 }
 
 lspconfig['nil_ls'].setup {
+  capabilities = capabilities,
   settings = {
     ['nil'] = {
       formatting = {
@@ -94,9 +112,12 @@ lspconfig['nil_ls'].setup {
   },
 }
 
-lspconfig['rust_analyzer'].setup {}
+lspconfig['rust_analyzer'].setup {
+  capabilities = capabilities,
+}
 
 lspconfig['ts_ls'].setup {
+  capabilities = capabilities,
   init_options = {
     plugins = {
       {
@@ -118,7 +139,9 @@ lspconfig['ts_ls'].setup {
 }
 
 -- sudo npm install -g @vue/typescript-plugin @vue/language-server
-lspconfig['volar'].setup {}
+lspconfig['volar'].setup {
+  capabilities = capabilities,
+}
 
 vim.diagnostic.config {
   virtual_text = true,
