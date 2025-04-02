@@ -165,7 +165,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
 vim.api.nvim_create_autocmd('CursorHold', {
   pattern = '*',
   callback = function()
-    vim.diagnostic.open_float()
+    vim.diagnostic.open_float(nil, { focusable = false })
   end,
   desc = '自动显示诊断错误信息',
   group = 'user_config',
