@@ -217,6 +217,7 @@ local section = {
       { type = "text", val = "常用命令", opts = { hl = "SpecialComment", shrink_margin = false } },
       { type = "padding", val = 1 },
       button("e", "新建文件", "<cmd>ene<CR>"),
+      button("s", "Session Manager", "<cmd>SessionManager<CR>"),
       button("l", "打开 Lazy", "<cmd>Lazy<CR>"),
       button("q", "退出", "<cmd>q<CR>"),
     },

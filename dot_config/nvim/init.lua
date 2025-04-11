@@ -646,7 +646,20 @@ require("lazy").setup({
       }
     end,
     keys = {
-      { '<leader>ss', function() require('session_manager').save_current_session() end },
+      { '<leader>ss', function()
+        local config = require('session_manager.config')
+        local utils = require('session_manager.utils')
+        local Job = require('plenary.job')
+        local job = Job:new({
+          command = 'git',
+          args = { 'rev-parse', '--show-toplevel' },
+        })
+        job:sync()
+        local git_dir = job:result()[1]
+        if git_dir then
+          utils.save_session(config.dir_to_session_filename(git_dir).filename)
+        end
+      end },
       { '<leader>sl', function() require('session_manager').load_session() end },
       { '<leader>sd', function() require('session_manager').delete_session() end },
     },
