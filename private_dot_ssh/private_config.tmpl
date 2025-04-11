@@ -8,7 +8,7 @@ Host *
   # 同主机共享连接
   ControlMaster auto
   ControlPath ~/.ssh/master-%r@%n:%p
-  ControlPersist 10m
+  ControlPersist yes
   # Forward SSH Agent
   ForwardAgent yes
   # Keep alive，防止自动登出
