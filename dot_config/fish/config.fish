@@ -47,6 +47,21 @@ if status is-interactive
         end
     end
 
+    if command -sq batman
+        batman --export-env | source
+    end
+
+    if type -q chezmoi
+        abbr -a cz chezmoi
+        abbr -a cza chezmoi add
+        abbr -a czap chezmoi apply --verbose
+        abbr -a czcd cd (chezmoi source-path)
+        abbr -a czd chezmoi diff
+        abbr -a cze chezmoi edit
+        abbr -a czi chezmoi init
+        abbr -a czu chezmoi update
+    end
+
     if command -sq delta
         alias diff delta
     end
@@ -66,6 +81,10 @@ if status is-interactive
         abbr -a icat kitten icat
     end
 
+    if command -sq kubectl
+        abbr -a k kubectl
+    end
+
     if type -q lazygit
         abbr -a lg lazygit
     end
@@ -75,19 +94,8 @@ if status is-interactive
         abbr -a vim nvim
     end
 
-    if type -q chezmoi
-        abbr -a cz chezmoi
-        abbr -a cza chezmoi add
-        abbr -a czap chezmoi apply --verbose
-        abbr -a czcd cd (chezmoi source-path)
-        abbr -a czd chezmoi diff
-        abbr -a cze chezmoi edit
-        abbr -a czi chezmoi init
-        abbr -a czu chezmoi update
-    end
-
-    if command -sq kubectl
-        abbr -a k kubectl
+    if type -q prettybat
+        abbr -a pcat prettybat
     end
 
     if command -sq systemctl

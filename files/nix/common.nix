@@ -6,6 +6,8 @@
       pkgs.aider-chat
       pkgs.basedpyright
       pkgs.bat
+      pkgs.bat-extras.batman
+      pkgs.bat-extras.prettybat
       pkgs.btop
       pkgs.chezmoi
       pkgs.cmake-language-server
