@@ -2,42 +2,42 @@
   home = {
     stateVersion = "23.05";
     enableNixpkgsReleaseCheck = true;
-    packages = [
-      pkgs.aider-chat
-      pkgs.basedpyright
-      pkgs.bat
-      pkgs.bat-extras.batman
-      pkgs.bat-extras.prettybat
-      pkgs.btop
-      pkgs.chezmoi
-      pkgs.cmake-language-server
-      pkgs.delta
-      pkgs.eza
-      pkgs.fastfetch
-      pkgs.fd
-      pkgs.fish
-      pkgs.fx
-      pkgs.fzf
-      pkgs.getent
-      pkgs.gersemi
-      pkgs.git
-      pkgs.grc
-      pkgs.htop
-      pkgs.isort
-      pkgs.jinja-lsp
-      pkgs.lazygit
-      pkgs.sumneko-lua-language-server
-      pkgs.nil
-      pkgs.nix-index
-      pkgs.nixfmt
-      pkgs.ripgrep
-      pkgs.ruff
-      pkgs.rustup
-      pkgs.starship
-      pkgs.typescript-language-server
-      pkgs.tig
-      pkgs.vscode-langservers-extracted
-      pkgs.xh
+    packages = with pkgs; [
+      aider-chat
+      basedpyright
+      bat
+      bat-extras.batman
+      bat-extras.prettybat
+      btop
+      chezmoi
+      cmake-language-server
+      delta
+      eza
+      fastfetch
+      fd
+      fish
+      fx
+      fzf
+      getent
+      gersemi
+      git
+      grc
+      htop
+      isort
+      jinja-lsp
+      lazygit
+      sumneko-lua-language-server
+      nil
+      nix-index
+      nixfmt
+      ripgrep
+      ruff
+      rustup
+      starship
+      typescript-language-server
+      tig
+      vscode-langservers-extracted
+      xh
     ];
   };
   programs.home-manager.enable = true;
