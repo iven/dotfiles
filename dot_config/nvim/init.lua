@@ -246,28 +246,13 @@ require("lazy").setup({
     config = function()
       require("noice").setup({
         views = {
-          popup = {
-            border = { style = "none" },
-          },
-          confirm = {
-            border = { style = "none" },
-          },
-          hover = {
-            border = { style = "none" },
-          },
-          cmdline = {
-            border = { style = "none" },
-          },
           cmdline_popup = {
-            -- 等这个修复后移除： https://github.com/folke/noice.nvim/issues/1082#issuecomment-2757739573
-            border = { style = "none" },
             position = {
               row = -2,
               col = 6,
             },
           },
           popupmenu = {
-            border = { style = "none" },
             position = {
               row = -5,
               col = 5,
