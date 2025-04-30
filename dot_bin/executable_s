@@ -145,9 +145,11 @@ class ResultFormatter:
 class Searcher:
     """搜索功能实现"""
 
-    def __init__(self, config: Config, search_term: str):
+    def __init__(self, config: Config, args: List[str], plain_text_mode: bool):
         self.config = config
-        self.search_term = search_term
+        self.args = args
+        self.search_term = args[-1]
+        self.plain_text_mode = plain_text_mode
         self.file_matches: Dict[Path, FileMatches] = {}
 
     def run(self) -> None:
@@ -165,19 +167,12 @@ class Searcher:
 
     def _run_ripgrep(self) -> str:
         """运行 ripgrep 命令并返回 JSON 输出"""
+        cmd = ["rg", "--json", "-S", "--hidden", "-g", "!**/.git/**"]
+        if self.plain_text_mode:
+            cmd.append("-F")
+        cmd.extend(self.args)
         try:
-            return subprocess.check_output(
-                [
-                    "rg",
-                    "--json",
-                    "-S",
-                    "--hidden",
-                    "-g",
-                    "!**/.git/**",
-                    self.search_term,
-                ],
-                text=True,
-            )
+            return subprocess.check_output(cmd, text=True)
         except subprocess.CalledProcessError as e:
             if e.returncode == 1:  # rg returns 1 when no matches found
                 sys.exit(1)
@@ -262,10 +257,12 @@ class App:
             args = sys.argv[1:]
             program = Path(sys.argv[0]).name
 
-            if program == "F":
-                self._run_jumper(args)
-            else:
+            if program == "s":
+                self._run_searcher(args, plain_text_mode=True)
+            elif program == "S":
                 self._run_searcher(args)
+            else:
+                self._run_jumper(args)
 
         except AppError as e:
             print(f"错误：{str(e)}", file=sys.stderr)
@@ -286,12 +283,12 @@ class App:
         jumper = ShortcutJumper(self.config)
         jumper.jump_to_match(index)
 
-    def _run_searcher(self, args: List[str]) -> None:
+    def _run_searcher(self, args: List[str], plain_text_mode: bool = False) -> None:
         """运行搜索功能"""
         if not args:
             raise InputError("请提供搜索关键词")
 
-        searcher = Searcher(self.config, " ".join(args))
+        searcher = Searcher(self.config, args, plain_text_mode)
         searcher.run()
 
 
