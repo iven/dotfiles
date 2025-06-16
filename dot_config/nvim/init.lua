@@ -174,7 +174,9 @@ require("lazy").setup({
   {
     "petertriho/nvim-scrollbar",
     config = function()
-      require("scrollbar").setup()
+      require("scrollbar").setup({
+        excluded_buftypes = { "terminal", "nofile" },
+      })
       require("scrollbar.handlers.gitsigns").setup()
     end,
   },
@@ -701,18 +703,15 @@ require("lazy").setup({
     },
   },
   {
-    "akinsho/toggleterm.nvim",
-    version = '*',
-    config = function()
-      require('toggleterm').setup {
-        open_mapping = "<c-`>",
-        direction = 'float',
-        shell = 'fish',
-        winbar = {
-          enabled = true,
-        },
-      }
-    end,
+    "nvzone/floaterm",
+    dependencies = "nvzone/volt",
+    opts = {
+      border = false,
+    },
+    cmd = "FloatermToggle",
+    keys = {
+      { "<c-`>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
+    }
   },
   {
     'knubie/vim-kitty-navigator',
