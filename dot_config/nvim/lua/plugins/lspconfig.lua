@@ -112,6 +112,10 @@ lspconfig['nil_ls'].setup {
   },
 }
 
+lspconfig['ruff'].setup {
+  capabilities = capabilities,
+}
+
 lspconfig['rust_analyzer'].setup {
   capabilities = capabilities,
 }

@@ -191,14 +191,6 @@ require("lazy").setup({
     config = function() require('plugins.theme') end,
   },
   {
-    "f-person/auto-dark-mode.nvim",
-    opts = {
-      update_interval = 1000,
-      -- 在官方方案合入前，先写死一个按时间来判断的逻辑
-      fallback = (tonumber(os.date("%H")) >= 7 and tonumber(os.date("%H")) < 19) and 'light' or 'dark',
-    },
-  },
-  {
     "NvChad/nvim-colorizer.lua",
     config = function() require('colorizer').setup({}) end,
     ft = { 'vim', 'lua', 'css', 'kitty' },
@@ -455,10 +447,19 @@ require("lazy").setup({
     build = "make",
     opts = {
       provider = "openai",
-      openai = {
-        endpoint = "https://api.deepbricks.ai/v1/",
-        model = "claude-3.5-sonnet",
-        disable_tools = true,
+      providers = {
+        openai = {
+          endpoint = "https://api.deepbricks.ai/v1/",
+          model = "claude-3.5-sonnet",
+          disable_tools = true,
+        },
+        groq = { -- define groq provider
+          __inherited_from = 'openai',
+          api_key_name = 'GROQ_API_KEY',
+          endpoint = 'https://api.groq.com/openai/v1/',
+          model = 'llama-3.3-70b-versatile',
+          max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+        },
       },
       cursor_applying_provider = 'groq', -- In this example, use Groq for applying, but you can also use any provider you want.
       behaviour = {
@@ -467,16 +468,6 @@ require("lazy").setup({
       },
       rag_service = {
         enabled = false, -- Enables the rag service, requires OPENAI_API_KEY to be set
-      },
-      vendors = {
-        --- ... existing vendors
-        groq = { -- define groq provider
-          __inherited_from = 'openai',
-          api_key_name = 'GROQ_API_KEY',
-          endpoint = 'https://api.groq.com/openai/v1/',
-          model = 'llama-3.3-70b-versatile',
-          max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
-        },
       },
       mappings = {
         submit = {
