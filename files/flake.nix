@@ -9,10 +9,15 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      darwinPkgs = nixpkgs.legacyPackages.aarch64-darwin;
-      linuxPkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in
-    {
+      darwinPkgs = import nixpkgs {
+        system = "aarch64-darwin";
+        config.allowUnfree = true;
+      };
+      linuxPkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+    in {
       homeConfigurations = {
         "darwin" = home-manager.lib.homeManagerConfiguration {
           pkgs = darwinPkgs;

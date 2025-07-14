@@ -10,6 +10,7 @@
       bat-extras.prettybat
       btop
       chezmoi
+      claude-code
       cmake-language-server
       delta
       eza
@@ -18,15 +19,14 @@
       fish
       fx
       fzf
-      getent
       gersemi
+      getent
       git
       grc
       htop
       isort
       jinja-lsp
       lazygit
-      sumneko-lua-language-server
       nil
       nix-index
       nixfmt
@@ -34,8 +34,9 @@
       ruff
       rustup
       starship
-      typescript-language-server
+      sumneko-lua-language-server
       tig
+      typescript-language-server
       vscode-langservers-extracted
       xh
     ];
