@@ -213,7 +213,6 @@ require("lazy").setup({
           'lazy',
           'lspinfo',
           'noice',
-          'toggleterm',
         },
       })
     end
@@ -698,6 +697,9 @@ require("lazy").setup({
     dependencies = "nvzone/volt",
     opts = {
       border = false,
+      terminals = {
+        { name = "Terminal", cmd = "fish" },
+      },
     },
     cmd = "FloatermToggle",
     keys = {

@@ -45,11 +45,11 @@ vim.opt.winborder = 'rounded'
 vim.opt.laststatus = 3       -- 全局状态栏
 
 -----------------------------------------------------------
--- Tabs, indent
+-- Tabs, indent（由 editorconfig 决定）
 -----------------------------------------------------------
-vim.opt.expandtab = true   -- Use spaces instead of tabs
-vim.opt.shiftwidth = 4     -- Shift 4 spaces when tab
-vim.opt.tabstop = 4        -- 1 tab == 4 spaces
+vim.opt.expandtab = true -- Use spaces instead of tabs
+-- vim.opt.shiftwidth = 4     -- Shift 4 spaces when tab
+-- vim.opt.tabstop = 4        -- 1 tab == 4 spaces
 vim.opt.smartindent = true -- Autoindent new lines
 
 -----------------------------------------------------------
@@ -138,6 +138,13 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.jinja',
   command = [[setfiletype jinja]],
   desc = '将 jinja 文件识别为 jinja',
+  group = 'user_config',
+})
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.code-workspace',
+  command = [[setfiletype jsonc]],
+  desc = '将 VSCode workspace 文件识别为 jsonc',
   group = 'user_config',
 })
 
