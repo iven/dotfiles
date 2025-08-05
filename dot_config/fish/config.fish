@@ -1,8 +1,8 @@
 ########## PATH ##########
 
+fish_add_path /usr/local/bin
 fish_add_path $HOME/.bin
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.krew/bin
 fish_add_path /opt/homebrew/bin
 
 ########## 环境变量 ##########
@@ -18,16 +18,8 @@ if test -f /etc/profile.d/99-wukong.sh; and type -q replay
     replay source /etc/profile.d/99-wukong.sh
 end
 
-if test -f $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh; and type -q replay
-    replay source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
-end
-
-if test -f $HOME/.nix-profile/etc/profile.d/nix.fish
-    source $HOME/.nix-profile/etc/profile.d/nix.fish
-end
-
-if test -f /etc/profile.d/nix-daemon.fish
-    source /etc/profile.d/nix-daemon.fish
+if command -sq devbox
+    devbox global shellenv --init-hook | source
 end
 
 ########## 交互式会话 ##########
