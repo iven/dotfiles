@@ -36,7 +36,8 @@
     "typescript-language-server@latest",
     "vscode-langservers-extracted@latest",
     "xh@latest",
-    "neovim"
+    "neovim",
+    "gh@latest"
   ],
   "shell": {
     "init_hook": [
