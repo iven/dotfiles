@@ -1849,6 +1849,54 @@
           "store_path": "/nix/store/h6hm650rvh8dpdcls9pfnkzznd48ri86-xh-0.24.1"
         }
       }
+    },
+    "yaml-language-server@latest": {
+      "last_modified": "2025-07-28T17:09:23Z",
+      "resolved": "github:NixOS/nixpkgs/648f70160c03151bc2121d179291337ad6bc564b#yaml-language-server",
+      "source": "devbox-search",
+      "version": "1.18.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jk3l4n5w01x7bvyqpanmw5fmmmj9pp1n-yaml-language-server-1.18.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jk3l4n5w01x7bvyqpanmw5fmmmj9pp1n-yaml-language-server-1.18.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/glq48h30l2gmr3iclgkmpnsmxxpy2xzj-yaml-language-server-1.18.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/glq48h30l2gmr3iclgkmpnsmxxpy2xzj-yaml-language-server-1.18.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jwg4qhcj5hmpk064hnir7j4qfv3k33p5-yaml-language-server-1.18.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jwg4qhcj5hmpk064hnir7j4qfv3k33p5-yaml-language-server-1.18.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/i4711kigf1qjg66wz1nmmd1xgzs07w6f-yaml-language-server-1.18.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/i4711kigf1qjg66wz1nmmd1xgzs07w6f-yaml-language-server-1.18.0"
+        }
+      }
     }
   }
 }

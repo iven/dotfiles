@@ -37,7 +37,8 @@
     "vscode-langservers-extracted@latest",
     "xh@latest",
     "neovim",
-    "gh@latest"
+    "gh@latest",
+    "yaml-language-server@latest"
   ],
   "shell": {
     "init_hook": [

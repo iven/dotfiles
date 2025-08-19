@@ -1,5 +1,7 @@
 [color]
     ui = auto
+[init]
+    defaultBranch = main
 [commit]
 {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "centos")) }}
     gpgSign = true
