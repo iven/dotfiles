@@ -50,7 +50,7 @@ vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k')
 vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l')
 
 -- Close all windows and exit from Neovim
-vim.keymap.set('n', '<leader>q', '<cmd>qa!<cr>')
+vim.keymap.set('n', '<leader>q', vim.v.servername == '' and '<cmd>qa!<cr>' or '<cmd>detach<cr>')
 
 -- 快速编辑和重载 init.lua
 vim.keymap.set('n', '<leader>e', '<cmd>e ~/.local/share/chezmoi/dot_config/nvim/init.lua<cr>')
