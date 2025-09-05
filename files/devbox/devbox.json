@@ -38,8 +38,13 @@
     "xh@latest",
     "neovim",
     "gh@latest",
-    "yaml-language-server@latest"
+    "yaml-language-server@latest",
+    "gnupg@latest",
+    "glibcLocales@latest"
   ],
+  "env": {
+    "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"
+  },
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null"
