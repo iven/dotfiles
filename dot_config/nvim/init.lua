@@ -505,12 +505,20 @@ require("lazy").setup({
       }
     end,
     keys = {
-      { '<leader>d', function() require('trouble').toggle({ mode = 'diagnostics',
-          filter = { buf = 0, severity = vim.diagnostic.severity.ERROR } }) end },
-      { '<leader>D', function() require('trouble').toggle({ mode = 'diagnostics',
-          filter = { vim.diagnostic.severity.ERROR } }) end },
-      { 'grr',       function() require('trouble').toggle({ mode = 'lsp_references' }) end },
-      { 'gri',       function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
+      { '<leader>d', function()
+        require('trouble').toggle({
+          mode = 'diagnostics',
+          filter = { buf = 0, severity = vim.diagnostic.severity.ERROR }
+        })
+      end },
+      { '<leader>D', function()
+        require('trouble').toggle({
+          mode = 'diagnostics',
+          filter = { vim.diagnostic.severity.ERROR }
+        })
+      end },
+      { 'grr', function() require('trouble').toggle({ mode = 'lsp_references' }) end },
+      { 'gri', function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
     },
     cmd = 'Trouble',
   },
@@ -706,7 +714,7 @@ require("lazy").setup({
     },
     cmd = "FloatermToggle",
     keys = {
-      { "<c-`>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
+      { "<c-t>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
     }
   },
   {
