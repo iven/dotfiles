@@ -40,7 +40,8 @@
     "gh@latest",
     "yaml-language-server@latest",
     "gnupg@latest",
-    "glibcLocales@latest"
+    "glibcLocales@latest",
+    "python313Packages.bpython@latest"
   ],
   "env": {
     "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"
