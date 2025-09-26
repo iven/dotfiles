@@ -714,7 +714,7 @@ require("lazy").setup({
     },
     cmd = "FloatermToggle",
     keys = {
-      { "<c-t>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
+      { "<c-`>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
     }
   },
   {

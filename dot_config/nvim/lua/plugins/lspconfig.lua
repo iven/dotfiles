@@ -1,12 +1,8 @@
-local lspconfig = require("lspconfig")
-local lsputil = require("lspconfig.util")
 local navic = require("nvim-navic")
-local blink = require("blink.cmp")
+local lsputil = require("lspconfig.util")
 
 local runtime_path = vim.split(package.path, ';')
--- 在 lsp-config 解决 issue 前，仍然需要 capabilities
--- https://cmp.saghen.dev/installation#lsp-capabilities
-local capabilities = blink.get_lsp_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -14,11 +10,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
     if client then
-      if client.server_capabilities.documentSymbolProvider then
-        if client.name ~= "volar" then
-          navic.attach(client, bufnr)
-        end
-      end
       if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable()
       end
@@ -26,7 +17,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end
 })
 
-lspconfig['basedpyright'].setup {
+vim.lsp.config('basedpyright', {
   capabilities = capabilities,
   settings = {
     basedpyright = {
@@ -35,30 +26,28 @@ lspconfig['basedpyright'].setup {
       },
     },
   },
-}
+})
+vim.lsp.enable('basedpyright')
 
-lspconfig['clangd'].setup {
+vim.lsp.config('clangd', {
   capabilities = capabilities,
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
-}
+})
+vim.lsp.enable('clangd')
 
-lspconfig['cmake'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('cmake', { capabilities = capabilities })
+vim.lsp.enable('cmake')
 
-lspconfig['djlsp'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('djlsp', { capabilities = capabilities })
+vim.lsp.enable('djlsp')
 
-lspconfig['gopls'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('gopls', { capabilities = capabilities })
+vim.lsp.enable('gopls')
 
-lspconfig['jinja_lsp'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('jinja_lsp', { capabilities = capabilities })
+vim.lsp.enable('jinja_lsp')
 
-lspconfig['jsonls'].setup {
+vim.lsp.config('jsonls', {
   capabilities = capabilities,
   settings = {
     json = {
@@ -66,9 +55,10 @@ lspconfig['jsonls'].setup {
       validate = { enable = true },
     },
   },
-}
+})
+vim.lsp.enable('jsonls')
 
-lspconfig['lua_ls'].setup {
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -85,7 +75,7 @@ lspconfig['lua_ls'].setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
-        -- https://github.com/neovim/nvim-lspconfig/issues/1700
+        -- https://github.com/neovim/nvim-vim.lsp.config/issues/1700
         checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
@@ -105,9 +95,10 @@ lspconfig['lua_ls'].setup {
     "selene.yml",
     ".git"
   ),
-}
+})
+vim.lsp.enable('lua_ls')
 
-lspconfig['nil_ls'].setup {
+vim.lsp.config('nil_ls', {
   capabilities = capabilities,
   settings = {
     ['nil'] = {
@@ -116,17 +107,16 @@ lspconfig['nil_ls'].setup {
       },
     },
   },
-}
+})
+vim.lsp.enable('nil_ls')
 
-lspconfig['ruff'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('ruff', { capabilities = capabilities })
+vim.lsp.enable('ruff')
 
-lspconfig['rust_analyzer'].setup {
-  capabilities = capabilities,
-}
+vim.lsp.config('rust_analyzer', { capabilities = capabilities })
+vim.lsp.enable('rust_analyzer')
 
-lspconfig['ts_ls'].setup {
+vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   init_options = {
     plugins = {
@@ -146,14 +136,10 @@ lspconfig['ts_ls'].setup {
     "typescript.tsx",
     "vue",
   },
-}
+})
+vim.lsp.enable('ts_ls')
 
--- sudo npm install -g @vue/typescript-plugin @vue/language-server
-lspconfig['volar'].setup {
-  capabilities = capabilities,
-}
-
-lspconfig['yamlls'].setup {
+vim.lsp.config('yamlls', {
   capabilities = capabilities,
   settings = {
     yaml = {
@@ -167,7 +153,8 @@ lspconfig['yamlls'].setup {
       schemas = require('schemastore').yaml.schemas(),
     },
   },
-}
+})
+vim.lsp.enable('yamlls')
 
 vim.diagnostic.config {
   virtual_text = true,
