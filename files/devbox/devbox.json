@@ -36,7 +36,7 @@
     "typescript-language-server@latest",
     "vscode-langservers-extracted@latest",
     "xh@latest",
-    "neovim",
+    "neovim@latest",
     "gh@latest",
     "yaml-language-server@latest",
     "gnupg@latest",
