@@ -34,11 +34,6 @@
     email = {{ .user.email }}
     name = {{ .user.name }}
     signingKey = D829E4EB662B22F8
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
 [credential "https://github.com"]
     helper =
 	helper = !gh auth git-credential
