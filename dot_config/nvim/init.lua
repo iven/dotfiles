@@ -321,9 +321,13 @@ require("lazy").setup({
         cmake = { "gersemi", timeout_ms = 2000 },
         css = { "prettier" },
         javascript = { "prettier" },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        javascriptreact = { 'prettier' },
         json = { "prettier" },
         nix = { "nixfmt" },
         python = { "ruff_organize_imports", "ruff_format" },
+        yaml = { "prettier" },
       },
       default_format_opts = {
         lsp_format = "fallback",
