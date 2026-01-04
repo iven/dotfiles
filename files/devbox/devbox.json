@@ -42,7 +42,8 @@
     "gnupg@latest",
     "glibcLocales@latest",
     "python313Packages.bpython@latest",
-    "prettier@latest"
+    "prettier@latest",
+    "witr@latest"
   ],
   "env": {
     "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"
