@@ -14,6 +14,12 @@ set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
 set -gx autovenv_announce false
 
+# 国内镜像配置
+set -gx ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/
+set -gx NODEJS_ORG_MIRROR https://npmmirror.com/mirrors/node/
+set -gx PLAYWRIGHT_DOWNLOAD_HOST https://npmmirror.com/mirrors/playwright/
+set -gx PUPPETEER_DOWNLOAD_HOST https://npmmirror.com/mirrors/chromium-browser-snapshots/
+
 if test -f /etc/profile.d/99-wukong.sh; and type -q replay
     replay source /etc/profile.d/99-wukong.sh
 end
@@ -31,12 +37,10 @@ if status is-interactive
     abbr -a rmr rm -Irf
     abbr -a pg pgrep -alf
 
-    if command -sq bat; or command -sq batcat
-        if command -sq bat
-            alias cat bat
-        else if command -sq batcat
-            alias cat batcat
-        end
+    if command -sq bat
+        alias cat bat
+    else if command -sq batcat
+        alias cat batcat
     end
 
     if command -sq batman
@@ -115,7 +119,7 @@ if status is-interactive
     ########## 环境变量 ##########
 
     # gnupg
-    set -x GPG_TTY (tty)
+    set -gx GPG_TTY (tty)
     if command -sq gpgconf
         gpgconf --launch gpg-agent
     end

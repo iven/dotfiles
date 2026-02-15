@@ -30,6 +30,8 @@
 {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "centos")) }}
     gpgSign = true
 {{- end }}
+[advice]
+	skippedCherryPicks = false
 [user]
     email = {{ .user.email }}
     name = {{ .user.name }}

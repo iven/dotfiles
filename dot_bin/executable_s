@@ -257,10 +257,13 @@ class App:
             args = sys.argv[1:]
             program = Path(sys.argv[0]).name
 
+            # 检查是否有 -R 参数来切换正则模式
+            regex_mode = "-R" in args
+            if regex_mode:
+                args = [arg for arg in args if arg != "-R"]
+
             if program == "s":
-                self._run_searcher(args, plain_text_mode=True)
-            elif program == "S":
-                self._run_searcher(args)
+                self._run_searcher(args, plain_text_mode=not regex_mode)
             else:
                 self._run_jumper(args)
 
