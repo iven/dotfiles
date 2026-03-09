@@ -13,6 +13,7 @@ set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
 set -gx autovenv_announce false
+set -gx ET_NO_TELEMETRY 1
 
 # 国内镜像配置
 set -gx ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/
