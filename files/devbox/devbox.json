@@ -38,7 +38,6 @@
     "gh":                           "latest",
     "yaml-language-server":         "latest",
     "gnupg":                        "latest",
-    "prettier":                     "latest",
     "witr":                         "latest",
     "eternal-terminal":             "latest",
     "glibcLocales": {
@@ -46,7 +45,8 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "happy-coder": "latest",
-    "awscli2":     "latest"
+    "awscli2":     "latest",
+    "oxfmt":       "latest"
   },
   "env": {
     "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"

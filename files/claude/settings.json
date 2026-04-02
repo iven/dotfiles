@@ -2,9 +2,10 @@
   "env": {
     "AWS_REGION": "us-west-2",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/6qydztudq5sm",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/lq4usksc0jag",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/lq4usksc0jag[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b[1m]",
     "ANTHROPIC_MODEL": "sonnet",
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "CLAUDE_CODE_USE_BEDROCK": "1"
   },
@@ -92,7 +93,6 @@
   },
   "enabledPlugins": {
     "pr-review-toolkit@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,

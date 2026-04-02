@@ -319,15 +319,15 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         cmake = { "gersemi", timeout_ms = 2000 },
-        css = { "prettier" },
-        javascript = { "prettier" },
-        typescript = { 'prettier' },
-        typescriptreact = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        json = { "prettier" },
+        css = { "oxfmt" },
+        javascript = { "oxfmt" },
+        typescript = { 'oxfmt' },
+        typescriptreact = { 'oxfmt' },
+        javascriptreact = { 'oxfmt' },
+        json = { "oxfmt" },
         nix = { "nixfmt" },
         python = { "ruff_organize_imports", "ruff_format" },
-        yaml = { "prettier" },
+        yaml = { "oxfmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",
