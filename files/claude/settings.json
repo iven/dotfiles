@@ -28,7 +28,9 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.github.com)"
     ],
-    "deny": ["Read(./**/.env.*)"]
+    "deny": [
+      "Read(./**/.env.*)"
+    ]
   },
   "model": "opus",
   "hooks": {

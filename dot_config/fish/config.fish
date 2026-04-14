@@ -7,6 +7,7 @@ fish_add_path /opt/homebrew/bin
 
 ########## 环境变量 ##########
 
+set -gx AWS_BEDROCK_FORCE_CACHE 1
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx PAGER less -RFXM
