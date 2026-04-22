@@ -15,6 +15,9 @@ set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
 set -gx autovenv_announce false
 set -gx ET_NO_TELEMETRY 1
+set -gx PI_CODING_AGENT_DIR $HOME/.config/pi/agent
+set -gx PI_TELEMETRY 0
+set -gx PI_CACHE_RETENTION long
 
 # 国内镜像配置
 set -gx ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/
@@ -85,6 +88,14 @@ if status is-interactive
 
     if type -q lazygit
         abbr -a lg lazygit
+    end
+
+    if command -sq workmux
+        abbr -a wm workmux
+        abbr -a wma 'workmux add iven/(random-word)-(random-word)'
+        abbr -a wmd workmux dashboard -t worktrees
+        abbr -a wml workmux list
+        abbr -a wmr workmux remove -f
     end
 
     if type -q nvim

@@ -1,13 +1,13 @@
 {
   "env": {
-    "AWS_REGION": "us-west-2",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/6qydztudq5sm",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/lq4usksc0jag[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/zwxnk69trift[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b[1m]",
-    "ANTHROPIC_MODEL": "sonnet",
+    "AWS_REGION": "us-west-2",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "CLAUDE_CODE_USE_BEDROCK": "1"
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "ENABLE_PROMPT_CACHING_1H": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -28,24 +28,13 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.github.com)"
     ],
-    "deny": [
-      "Read(./**/.env.*)"
-    ]
+    "deny": ["Read(./**/.env.*)"]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
-    "UserPromptSubmit": [
+    "PermissionRequest": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
@@ -76,9 +65,18 @@
         ]
       }
     ],
-    "PermissionRequest": [
+    "Stop": [
       {
-        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
         "hooks": [
           {
             "type": "command",
@@ -94,33 +92,31 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "pr-review-toolkit@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "pua@pua-skills": true,
     "skill-creator@claude-plugins-official": true,
-    "context7-plugin@context7-marketplace": true
+    "workmux-status@workmux": true
   },
   "extraKnownMarketplaces": {
-    "superpowers-marketplace": {
+    "pua-skills": {
       "source": {
         "source": "github",
-        "repo": "obra/superpowers-marketplace"
+        "repo": "tanweai/pua"
       }
     },
-    "claude-context-mode": {
+    "workmux": {
       "source": {
         "source": "github",
-        "repo": "mksglu/claude-context-mode"
-      }
-    },
-    "context7-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "upstash/context7"
+        "repo": "raine/workmux"
       }
     }
   },
+  "viewMode": "verbose",
   "language": "中文",
   "spinnerTipsEnabled": false,
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true
 }

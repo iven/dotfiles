@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+dict=/usr/share/dict/words
+
+if [ -f "$dict" ]; then
+    mapfile -t words < <(grep -E '^[a-z]{4,8}$' "$dict")
+else
+    words=(amber azure birch blaze brook cedar cliff coral crane creek drift ember field flint frost glade grove haven hazel heath heron ivory larch lemon linen lotus lunar maple marsh mocha noble ocean orbit otter peach pearl petal pixel plain prism raven ridge river rocky slate smoke solar spark spire storm swift talon thorn tiger toast topaz trace trail tulip valor vapor vault viola vivid waltz whirl zebra)
+fi
+
+echo "${words[$((RANDOM % ${#words[@]}))]}"
