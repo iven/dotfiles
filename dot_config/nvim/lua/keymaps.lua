@@ -5,8 +5,10 @@
 -- Change leader to a comma
 vim.g.mapleader = ','
 
--- 回车选择当前单词
-vim.keymap.set('n', '<cr>', 'viw')
+-- 回车键增量选择
+vim.keymap.set({'x', 'n'}, '<cr>', function()
+  require('vim.treesitter._select').select_parent(vim.v.count1)
+end)
 
 -- Clear search highlighting with <leader> and c
 vim.keymap.set('n', '<leader><space>', '<cmd>nohl<cr>')

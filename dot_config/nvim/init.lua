@@ -30,26 +30,10 @@ require("lazy").setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     config = function() require('plugins.nvim-treesitter') end,
-  },
-  {
-    'HiPhish/rainbow-delimiters.nvim',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    config = function()
-      require 'rainbow-delimiters.setup' {
-        strategy = {
-          [''] = require('rainbow-delimiters').strategy['global'],
-        },
-        query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
-        },
-        blacklist = { 'json' },
-      }
-    end,
   },
   {
     'akinsho/bufferline.nvim',
@@ -346,13 +330,12 @@ require("lazy").setup({
   },
   {
     'saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
       'rafamadriz/friendly-snippets',
       "xzbdmw/colorful-menu.nvim",
       { "saghen/blink.compat", opts = { enable_events = true } },
     },
-    -- 需要用 rustup 来装： rustup component add --toolchain nightly-aarch64-apple-darwin cargo
-    build = 'cargo build --release',
     opts = {
       keymap = {
         preset = 'enter',
@@ -417,8 +400,7 @@ require("lazy").setup({
         },
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
-      -- blink 的 signature 不知为何显示不全，所以暂时使用 C-s 手动触发
-      signature = { enabled = false },
+      signature = { enabled = true },
     },
     opts_extend = { "sources.default" }
   },
@@ -558,7 +540,6 @@ require("lazy").setup({
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
-    config = function() require('nvim-treesitter.configs').setup { endwise = { enable = true } } end,
     ft = { 'ruby', 'lua', 'vimscript', 'bash' },
   },
   {
