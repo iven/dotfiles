@@ -9,7 +9,7 @@
 # 交互方式
 
 * 交互时默认使用中文。
-* 适用时多使用 ASCII 线框图。
+* 解释问题时多使用 ASCII 线框图。
 
 # 内容生成
 
@@ -25,10 +25,14 @@
 
 * 生成 Markdown 之类的文档时，必须惜字如金，禁止过度解释和重复，少比多好。
 
+# 个人开发环境
+
+* 个人开发环境配置（dotfiles、shell、编辑器等）由 chezmoi 管理，source 位于 `~/.local/share/chezmoi`，修改时优先改 source 再 `chezmoi apply`。
+* 全局命令行工具（如 tree-sitter、ripgrep 等）大部分通过 devbox global 管理，安装使用 `devbox global add <package>`；devbox 仅用于个人全局工具，不用于开发项目的依赖管理。
+
 # 工具操作
 
 * 如需创建临时文件，需创建在 /tmp/claude/ 目录下，此目录已存在，直接写入即可。
-* 家目录的配置文件很多由 chezmoi 管理（source: `~/.local/share/chezmoi`），修改时优先改 chezmoi source 再 apply。
 * 不要对命令输出直接使用 `head -N` 或 `grep`，因为截断或过滤可能丢失关键信息导致错误结论，且一旦需要完整输出就得重新执行——对于耗时命令（如 vitest）代价很高。正确做法：先将输出重定向到临时文件，再按需 `grep` 或 `head -N`。
 * 除非用户明确要求，否则绝不主动执行 `git commit` 或 `git push`，否则可能引起重大事故。
 * 如果不小心提交或推送了，应立即使用 `git reset --soft` 撤销，保留改动。
