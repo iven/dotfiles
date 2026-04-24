@@ -1,0 +1,78 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "3401ee31-edf7-458f-ac41-89f7c74a4118",
+        "type": "git-worktree",
+        "color": "magenta"
+      },
+      {
+        "id": "8f528f0f-ea7a-43c7-b33f-6fc9156f97d3",
+        "type": "git-changes",
+        "color": "yellow",
+        "rawValue": false
+      },
+      {
+        "id": "511e0d15-c2b7-4a34-a610-ca8a80404c36",
+        "type": "context-percentage",
+        "color": "cyan",
+        "rawValue": true
+      },
+      {
+        "id": "flex-sep-1",
+        "type": "flex-separator"
+      },
+      {
+        "id": "cc-quota-status",
+        "type": "custom-command",
+        "commandPath": "/Users/iven/.local/bin/cc-quota status",
+        "timeout": 1500,
+        "color": "hex:6e6a86"
+      },
+      {
+        "id": "cc-quota-opus",
+        "type": "custom-command",
+        "commandPath": "/Users/iven/.local/bin/cc-quota opus",
+        "timeout": 1500,
+        "color": "hex:c4a7e7"
+      },
+      {
+        "id": "cc-quota-sonnet",
+        "type": "custom-command",
+        "commandPath": "/Users/iven/.local/bin/cc-quota sonnet",
+        "timeout": 1500,
+        "color": "hex:d4a76a"
+      },
+      {
+        "id": "cc-quota-days",
+        "type": "custom-command",
+        "commandPath": "/Users/iven/.local/bin/cc-quota days",
+        "timeout": 1500,
+        "color": "hex:3e8fb0"
+      }
+    ],
+    [],
+    []
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 3,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}

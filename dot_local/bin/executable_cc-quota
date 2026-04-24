@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+import json
+import os
+import sys
+import time
+import tomllib
+import urllib.request
+from contextlib import contextmanager
+from datetime import date, datetime
+from pathlib import Path
+from typing import Any, Generator
+
+OFFLINE = "⌁"
+CACHE_TTL = 300
+LOCK_TIMEOUT = 5
+REQUEST_TIMEOUT = 1
+
+CONFIG_PATH = Path.home() / ".config/cc-quota/config.toml"
+CACHE_DIR = Path.home() / ".cache/cc-quota"
+CACHE_PATH = CACHE_DIR / "data.json"
+LOCK_PATH = CACHE_DIR / "lock"
+
+
+def load_config() -> tuple[str, str] | None:
+    if not CONFIG_PATH.exists():
+        return None
+    cfg = tomllib.loads(CONFIG_PATH.read_text())
+    ldap, api_url = cfg.get("ldap", ""), cfg.get("api_url", "")
+    return (ldap, api_url) if ldap and api_url else None
+
+
+def load_cache() -> tuple[dict[str, Any] | None, float, bool]:
+    try:
+        c = json.loads(CACHE_PATH.read_text())
+        return c.get("data"), c.get("fetched_at", 0), c.get("online", True)
+    except Exception:
+        return None, 0, False
+
+
+def save_cache(data: dict[str, Any], *, online: bool) -> None:
+    CACHE_PATH.write_text(json.dumps({"fetched_at": time.time(), "data": data, "online": online}))
+
+
+@contextmanager
+def acquire_lock() -> Generator[bool, None, None]:
+    acquired = False
+    try:
+        fd = os.open(str(LOCK_PATH), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.close(fd)
+        acquired = True
+    except FileExistsError:
+        try:
+            if time.time() - LOCK_PATH.stat().st_mtime > LOCK_TIMEOUT:
+                LOCK_PATH.unlink(missing_ok=True)
+                fd = os.open(str(LOCK_PATH), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.close(fd)
+                acquired = True
+        except Exception:
+            pass
+    try:
+        yield acquired
+    finally:
+        if acquired:
+            LOCK_PATH.unlink(missing_ok=True)
+
+
+def fetch(api_url: str, ldap: str) -> tuple[dict[str, Any] | None, bool]:
+    with acquire_lock() as acquired:
+        if not acquired:
+            return None, False
+        try:
+            opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+            resp = opener.open(urllib.request.Request(f"{api_url}?ldap={ldap}"), timeout=REQUEST_TIMEOUT)
+            data = json.loads(resp.read()).get("data", {})
+            save_cache(data, online=True)
+            return data, True
+        except Exception:
+            return None, False
+
+
+def days_until(reset_str: str) -> str:
+    try:
+        reset_date = datetime.fromisoformat(reset_str.replace("Z", "+00:00")).date()
+        return f"◷ {(reset_date - date.today()).days}d"
+    except Exception:
+        return OFFLINE
+
+
+FIELDS: dict[str, Any] = {
+    "opus":   lambda d: f"‹o› {d.get('opusSpend', 0):.0f}/${d.get('opusQuota', 0):.0f}",
+    "sonnet": lambda d: f"‹s› {d.get('nonOpusSpend', 0):.0f}/${d.get('nonOpusQuota', 0):.0f}",
+    "days":   lambda d: days_until(d.get("nextResetDate", "")),
+}
+
+
+def main() -> None:
+    field = sys.argv[1] if len(sys.argv) > 1 else ""
+    if field not in FIELDS and field != "status":
+        sys.exit(0)
+
+    config = load_config()
+    if config is None:
+        sys.exit(0)
+    ldap, api_url = config
+
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    data, fetched_at, online = load_cache()
+    age = time.time() - fetched_at
+
+    if data is None or age >= CACHE_TTL:
+        fresh, online = fetch(api_url, ldap)
+        if fresh is not None:
+            data, age = fresh, 0
+        elif data is not None:
+            save_cache(data, online=False)
+
+    if data is None:
+        if field == "status":
+            print(OFFLINE)
+        sys.exit(0)
+
+    if field == "status":
+        if not online:
+            print(OFFLINE)
+        sys.exit(0)
+
+    print(FIELDS[field](data))
+
+
+if __name__ == "__main__":
+    main()
