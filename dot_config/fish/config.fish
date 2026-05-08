@@ -92,7 +92,7 @@ if status is-interactive
 
     if command -sq workmux
         abbr -a wm workmux
-        abbr -a wma 'workmux add iven/(random-word)-(random-word)'
+        abbr -a wma 'git fetch origin && workmux add --base origin/main iven/(random-word)-(random-word)'
         abbr -a wmd workmux dashboard -t worktrees
         abbr -a wml workmux list
         abbr -a wmr workmux remove -f

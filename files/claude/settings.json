@@ -6,6 +6,7 @@
     "AWS_REGION": "us-west-2",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE": "1",
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "ENABLE_PROMPT_CACHING_1H": "1"
   },
@@ -97,18 +98,11 @@
     "claude-md-management@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "pua@pua-skills": true,
     "skill-creator@claude-plugins-official": true,
-    "workmux-status@workmux": true
+    "workmux-status@workmux": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "pua-skills": {
-      "source": {
-        "source": "github",
-        "repo": "tanweai/pua"
-      }
-    },
     "workmux": {
       "source": {
         "source": "github",
@@ -120,5 +114,7 @@
   "language": "中文",
   "spinnerTipsEnabled": false,
   "tui": "fullscreen",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
+  "verbose": true
 }
