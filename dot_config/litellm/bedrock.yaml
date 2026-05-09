@@ -1,0 +1,26 @@
+model_list:
+  - model_name: claude-sonnet
+    litellm_params:
+      model: bedrock/converse/arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b
+      aws_region_name: us-west-2
+      extra_headers:
+        anthropic-beta: context-1m-2025-08-07
+
+  - model_name: claude-opus
+    litellm_params:
+      model: bedrock/converse/arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/zwxnk69trift
+      aws_region_name: us-west-2
+      extra_headers:
+        anthropic-beta: context-1m-2025-08-07
+
+  - model_name: claude-haiku
+    litellm_params:
+      model: bedrock/converse/arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/6qydztudq5sm
+      aws_region_name: us-west-2
+
+litellm_settings:
+  drop_params: true
+  callbacks: drop_client_metadata.proxy_handler_instance
+
+general_settings:
+  master_key: sk-codex-local
