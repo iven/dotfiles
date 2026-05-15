@@ -5,6 +5,7 @@
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b[1m]",
     "AWS_REGION": "us-west-2",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "CLAUDE_CODE_DISABLE_MOUSE": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE": "1",
     "CLAUDE_CODE_USE_BEDROCK": "1",
@@ -29,11 +30,9 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.github.com)"
     ],
-    "deny": [
-      "Read(./**/.env.*)"
-    ]
+    "deny": ["Read(./**/.env.*)"]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "PermissionRequest": [
       {
@@ -87,6 +86,16 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/context-mode-cache-heal.mjs\""
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -100,7 +109,9 @@
     "playwright@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "workmux-status@workmux": true,
-    "chrome-devtools-mcp@claude-plugins-official": true
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "mem0@mem0-plugins": true,
+    "context-mode@context-mode": true
   },
   "extraKnownMarketplaces": {
     "workmux": {
@@ -108,12 +119,25 @@
         "source": "github",
         "repo": "raine/workmux"
       }
+    },
+    "mem0-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "mem0ai/mem0"
+      }
+    },
+    "context-mode": {
+      "source": {
+        "source": "github",
+        "repo": "mksglu/context-mode"
+      }
     }
   },
   "viewMode": "verbose",
   "language": "中文",
   "spinnerTipsEnabled": false,
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
   "verbose": true

@@ -134,6 +134,16 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'user_config',
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    -- ftplugin/markdown.vim 默认设置了 't'，导致输入时自动插入换行
+    vim.opt_local.formatoptions:remove('t')
+  end,
+  desc = '禁止 markdown 自动折行',
+  group = 'user_config',
+})
+
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.jinja',
   command = [[setfiletype jinja]],

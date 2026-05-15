@@ -10,7 +10,7 @@ allowed-tools: Bash(git:*)
 
 未合并的 commit：
 
-!`git fetch origin 2>/dev/null; ~/.claude/skills/wipe/scripts/check-unmerged-commits.sh`
+!`git fetch --prune origin 2>/dev/null; ~/.claude/skills/wipe/scripts/check-unmerged-commits.sh`
 
 如果上面输出为 `(none)`，直接重置，无需确认。否则展示给用户并用 AskUserQuestion 确认，取消则终止。
 
@@ -18,4 +18,5 @@ allowed-tools: Bash(git:*)
 
 ```bash
 git reset --hard origin/main
+git branch --unset-upstream 2>/dev/null || true
 ```

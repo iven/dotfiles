@@ -7,4 +7,4 @@ allowed-tools: Bash
 
 !`workmux list | tail -n +2 | grep -v '^\s*main\s'`
 
-展示编号列表，等用户输入编号，执行 `workmux open <branch>`。
+展示编号列表，等用户输入编号，执行 `SHELL=$(python3 -c "import pwd,os; print(pwd.getpwuid(os.getuid()).pw_shell)") workmux open <branch>`。
