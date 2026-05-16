@@ -131,25 +131,6 @@ if status is-interactive
 
     ########## 环境变量 ##########
 
-    # gnupg
-    set -gx GPG_TTY (tty)
-    if command -sq gpgconf
-        gpgconf --launch gpg-agent
-    end
-    if command -sq gpg-connect-agent
-        gpg-connect-agent updatestartuptty /bye &>/dev/null
-    end
-
-    # ssh
-    set -e SSH_AGENT_PID
-    if command -sq gpgconf
-        if test -n "$SSH_TTY"
-            set -gx SSH_AUTH_SOCK (gpgconf --list-dirs homedir)/S.gpg-agent.ssh
-        else
-            set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-        end
-    end
-
     if command -sq fzf
         set fzf_fd_opts --hidden --exclude=.git
         set fzf_preview_dir_cmd eza --all --color=always

@@ -15,7 +15,9 @@
 [diff]
     colorMoved = default
 [gpg]
-    program = gpg
+    format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.config/git/allowed_signers
 [interactive]
     diffFilter = delta --color-only
 [merge]
@@ -35,7 +37,7 @@
 [user]
     email = {{ .user.email }}
     name = {{ .user.name }}
-    signingKey = D829E4EB662B22F8
+    signingKey = ~/.ssh/id_ed25519.pub
 [credential "https://github.com"]
     helper =
 	helper = !gh auth git-credential
