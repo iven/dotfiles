@@ -29,9 +29,7 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.github.com)"
     ],
-    "deny": [
-      "Read(./**/.env.*)"
-    ]
+    "deny": ["Read(./**/.env.*)"]
   },
   "model": "sonnet",
   "hooks": {
@@ -136,7 +134,29 @@
   },
   "viewMode": "verbose",
   "language": "中文",
-  "spinnerTipsEnabled": false,
+  "spinnerTipsEnabled": true,
+  "spinnerTipsOverride": {
+    "excludeDefault": true,
+    "tips": [
+      "🙏 双手合十，向下压腕伸展一下吧～",
+      "💪 把手臂伸直，做前臂伸展拉伸～",
+      "🤲 用拇指按压前臂，松解一下肌肉～",
+      "✊ 拿起握力器捏几下，锻炼一下手部力量～",
+      "🤞 手指逐个弯曲再伸直，重复几次～",
+      "🔄 手腕顺逆时针各画几个圆～",
+      "↔️ 头部缓慢左右侧倾，拉伸一下颈侧～",
+      "🔁 双肩向后画圆，舒展一下肩背～",
+      "⬆️ 耸肩到最高保持几秒，然后放松～",
+      "🪑 站起来做几次提肛运动，预防久坐损伤～",
+      "💧 记得喝水哦，别忘了！",
+      "🖥️ 把桌子升起来站着工作吧！",
+      "🙆 肩颈有点僵了吧？转一转放松一下～",
+      "🚻 起身活动一下，顺便去洗手间～",
+      "🤖 别跟 AI 较劲，快速完成工作才是最重要的～",
+      "⚡ 试试同时开多个 AI 并发处理不同任务，效率翻倍！",
+      "💬 让 AI 多问你几个问题，需求越清晰，结果越好～"
+    ]
+  },
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
