@@ -2337,6 +2337,54 @@
           "store_path": "/nix/store/1jzyycb7fv8ppzqaynqvzsvgbf5f9aaf-yaml-language-server-1.22.0"
         }
       }
+    },
+    "zls@latest": {
+      "last_modified": "2026-04-23T13:07:47Z",
+      "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#zls",
+      "source": "devbox-search",
+      "version": "0.16.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/43rah288ign1wrgll3h2b1hqjkpzv4rn-zls-0.16.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/43rah288ign1wrgll3h2b1hqjkpzv4rn-zls-0.16.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xi8v0c7jhkfrcs102wlwyfx6arc7zk7f-zls-0.16.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xi8v0c7jhkfrcs102wlwyfx6arc7zk7f-zls-0.16.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/583cchs47pbgyb89f26vd40480lfzvl2-zls-0.16.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/583cchs47pbgyb89f26vd40480lfzvl2-zls-0.16.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/15b5lqx80fbl938gwiknc9jrc3kcdj29-zls-0.16.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/15b5lqx80fbl938gwiknc9jrc3kcdj29-zls-0.16.0"
+        }
+      }
     }
   }
 }

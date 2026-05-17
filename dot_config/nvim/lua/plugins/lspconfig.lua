@@ -116,6 +116,9 @@ vim.lsp.enable('ruff')
 vim.lsp.config('rust_analyzer', { capabilities = capabilities })
 vim.lsp.enable('rust_analyzer')
 
+vim.lsp.config('zls', { capabilities = capabilities })
+vim.lsp.enable('zls')
+
 vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   init_options = {

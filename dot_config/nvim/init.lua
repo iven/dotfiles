@@ -312,6 +312,7 @@ require("lazy").setup({
         nix = { "nixfmt" },
         python = { "ruff_organize_imports", "ruff_format" },
         yaml = { "oxfmt" },
+        zig = { "zigfmt" },
       },
       default_format_opts = {
         lsp_format = "fallback",
