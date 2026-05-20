@@ -172,13 +172,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = 'user_config',
 })
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*',
-  command = [[hi IlluminatedWordText cterm=bold ctermbg=237 guibg=#3e614f gui=none]],
-  desc = '强调当前变量',
-  group = 'user_config',
-})
-
 vim.api.nvim_create_autocmd('CursorHold', {
   pattern = '*',
   callback = function()
