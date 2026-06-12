@@ -28,6 +28,8 @@
     default = current
 [rebase]
     autoStash = true
+[status]
+    showUntrackedFiles = all
 [tag]
 {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "centos")) }}
     gpgSign = true

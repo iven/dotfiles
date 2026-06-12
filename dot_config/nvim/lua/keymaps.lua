@@ -6,7 +6,8 @@
 vim.g.mapleader = ','
 
 -- 回车键增量选择
-vim.keymap.set({'x', 'n'}, '<cr>', function()
+vim.keymap.set('n', '<cr>', 'viw')
+vim.keymap.set('x', '<cr>', function()
   require('vim.treesitter._select').select_parent(vim.v.count1)
 end)
 

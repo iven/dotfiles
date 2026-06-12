@@ -1,13 +1,12 @@
 {
   "env": {
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/6qydztudq5sm",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/zwxnk69trift[1m]",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:us-west-2:027950631154:application-inference-profile/8wqy9105fv0b[1m]",
-    "AWS_REGION": "us-west-2",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1m]",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE": "1",
-    "CLAUDE_CODE_USE_BEDROCK": "1",
     "ENABLE_PROMPT_CACHING_1H": "1"
   },
   "includeCoAuthoredBy": false,
@@ -29,63 +28,12 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:docs.github.com)"
     ],
-    "deny": ["Read(./**/.env.*)"]
+    "deny": [
+      "Read(./**/.env.*)"
+    ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
-    "PermissionRequest": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$SUPERSET_HOME_DIR\" ] && [ -x \"$SUPERSET_HOME_DIR/hooks/notify.sh\" ] && \"$SUPERSET_HOME_DIR/hooks/notify.sh\" || true"
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
@@ -103,20 +51,20 @@
     "padding": 0
   },
   "enabledPlugins": {
+    "chrome-devtools-mcp@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
+    "context-mode@context-mode": true,
     "context7@claude-plugins-official": true,
+    "mem0@mem0-plugins": true,
     "playwright@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "workmux-status@workmux": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "mem0@mem0-plugins": true,
-    "context-mode@context-mode": true
+    "workmux-status@workmux": true
   },
   "extraKnownMarketplaces": {
-    "workmux": {
+    "context-mode": {
       "source": {
         "source": "github",
-        "repo": "raine/workmux"
+        "repo": "mksglu/context-mode"
       }
     },
     "mem0-plugins": {
@@ -125,10 +73,10 @@
         "repo": "mem0ai/mem0"
       }
     },
-    "context-mode": {
+    "workmux": {
       "source": {
         "source": "github",
-        "repo": "mksglu/context-mode"
+        "repo": "raine/workmux"
       }
     }
   },

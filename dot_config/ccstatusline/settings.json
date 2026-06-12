@@ -31,18 +31,11 @@
         "color": "hex:6e6a86"
       },
       {
-        "id": "cc-quota-opus",
+        "id": "cc-quota-quota",
         "type": "custom-command",
-        "commandPath": "/Users/iven/.local/bin/cc-quota opus",
+        "commandPath": "/Users/iven/.local/bin/cc-quota quota",
         "timeout": 1500,
         "color": "hex:c4a7e7"
-      },
-      {
-        "id": "cc-quota-sonnet",
-        "type": "custom-command",
-        "commandPath": "/Users/iven/.local/bin/cc-quota sonnet",
-        "timeout": 1500,
-        "color": "hex:d4a76a"
       },
       {
         "id": "cc-quota-days",

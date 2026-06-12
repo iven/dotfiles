@@ -14,6 +14,7 @@ OFFLINE = "⌁"
 CACHE_TTL = 300
 LOCK_TIMEOUT = 5
 REQUEST_TIMEOUT = 1
+QUOTA_UNIT = 500000  # API 数值 / QUOTA_UNIT = 美元
 
 CONFIG_PATH = Path.home() / ".config/cc-quota/config.toml"
 CACHE_DIR = Path.home() / ".cache/cc-quota"
@@ -25,8 +26,8 @@ def load_config() -> tuple[str, str] | None:
     if not CONFIG_PATH.exists():
         return None
     cfg = tomllib.loads(CONFIG_PATH.read_text())
-    ldap, api_url = cfg.get("ldap", ""), cfg.get("api_url", "")
-    return (ldap, api_url) if ldap and api_url else None
+    api_url, cookie = cfg.get("api_url", ""), cfg.get("cookie", "")
+    return (api_url, cookie) if api_url and cookie else None
 
 
 def load_cache() -> tuple[dict[str, Any] | None, float, bool]:
@@ -64,13 +65,14 @@ def acquire_lock() -> Generator[bool, None, None]:
             LOCK_PATH.unlink(missing_ok=True)
 
 
-def fetch(api_url: str, ldap: str) -> tuple[dict[str, Any] | None, bool]:
+def fetch(api_url: str, cookie: str) -> tuple[dict[str, Any] | None, bool]:
     with acquire_lock() as acquired:
         if not acquired:
             return None, False
         try:
             opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-            resp = opener.open(urllib.request.Request(f"{api_url}?ldap={ldap}"), timeout=REQUEST_TIMEOUT)
+            req = urllib.request.Request(api_url, headers={"Cookie": cookie, "Accept": "application/json"})
+            resp = opener.open(req, timeout=REQUEST_TIMEOUT)
             data = json.loads(resp.read()).get("data", {})
             save_cache(data, online=True)
             return data, True
@@ -87,9 +89,8 @@ def days_until(reset_str: str) -> str:
 
 
 FIELDS: dict[str, Any] = {
-    "opus":   lambda d: f"‹o› {d.get('opusSpend', 0):.0f}/${d.get('opusQuota', 0):.0f}",
-    "sonnet": lambda d: f"‹s› {d.get('nonOpusSpend', 0):.0f}/${d.get('nonOpusQuota', 0):.0f}",
-    "days":   lambda d: days_until(d.get("nextResetDate", "")),
+    "quota": lambda d: f"${d.get('period_used_quota', 0) / QUOTA_UNIT:.0f}/${d.get('period_quota', 0) / QUOTA_UNIT:.0f}",
+    "days":  lambda d: days_until(d.get("next_reset_at", "")),
 }
 
 
@@ -101,14 +102,14 @@ def main() -> None:
     config = load_config()
     if config is None:
         sys.exit(0)
-    ldap, api_url = config
+    api_url, cookie = config
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     data, fetched_at, online = load_cache()
     age = time.time() - fetched_at
 
     if data is None or age >= CACHE_TTL:
-        fresh, online = fetch(api_url, ldap)
+        fresh, online = fetch(api_url, cookie)
         if fresh is not None:
             data, age = fresh, 0
         elif data is not None:

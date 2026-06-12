@@ -11,7 +11,6 @@ set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
-set -gx no_proxy localhost,127.0.0.1
 set -gx autovenv_announce false
 set -gx ET_NO_TELEMETRY 1
 set -gx PI_CODING_AGENT_DIR $HOME/.config/pi/agent
@@ -94,7 +93,7 @@ if status is-interactive
         abbr -a wma 'git fetch origin && workmux add --base origin/main iven/(random-word)-(random-word)'
         abbr -a wmd workmux dashboard -t worktrees
         abbr -a wml workmux list
-        abbr -a wmr workmux remove -f
+        abbr -a wmr 'cd (git rev-parse --show-toplevel || echo .) && workmux remove -f'
     end
 
     if type -q nvim
