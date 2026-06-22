@@ -703,10 +703,7 @@ require("lazy").setup({
       { "<c-`>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" } },
     }
   },
-  {
-    'knubie/vim-kitty-navigator',
-    build = 'cp ./*.py ~/.config/kitty/',
-  },
+  'knubie/vim-kitty-navigator',
   {
     'h-hg/fcitx.nvim',
     event = 'InsertEnter',
