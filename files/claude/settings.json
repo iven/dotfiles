@@ -32,7 +32,7 @@
       "Read(./**/.env.*)"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {

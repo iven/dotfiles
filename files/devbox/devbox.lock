@@ -465,6 +465,54 @@
         }
       }
     },
+    "deno@latest": {
+      "last_modified": "2026-06-16T10:57:20Z",
+      "resolved": "github:NixOS/nixpkgs/3e41b24abd260e8f71dbe2f5737d24122f972158#deno",
+      "source": "devbox-search",
+      "version": "2.8.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/a9avpz7i9y2yjhmdimq719ih6wbb4s0p-deno-2.8.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/a9avpz7i9y2yjhmdimq719ih6wbb4s0p-deno-2.8.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k9i90jkr8z8b7jcq46q6ngiwkjn9pcsb-deno-2.8.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k9i90jkr8z8b7jcq46q6ngiwkjn9pcsb-deno-2.8.3"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7n23a647qf4sm4xc3xp87qdf9sf19h3s-deno-2.8.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7n23a647qf4sm4xc3xp87qdf9sf19h3s-deno-2.8.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xw4ba4i58gcghzpxpx3f5ylxdv94hj07-deno-2.8.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xw4ba4i58gcghzpxpx3f5ylxdv94hj07-deno-2.8.3"
+        }
+      }
+    },
     "eternal-terminal@latest": {
       "last_modified": "2026-05-21T08:15:18Z",
       "resolved": "github:NixOS/nixpkgs/4a29d733e8a7d5b824c3d8c958a946a9867b3eb2#eternal-terminal",

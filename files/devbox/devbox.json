@@ -48,7 +48,8 @@
     "awscli2":                        "latest",
     "oxfmt":                          "latest",
     "luajitPackages.tree-sitter-cli": "latest",
-    "zls":                            "latest"
+    "zls":                            "latest",
+    "deno":                           "latest"
   },
   "env": {
     "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"
