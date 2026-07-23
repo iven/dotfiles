@@ -32,7 +32,6 @@
       "Read(./**/.env.*)"
     ]
   },
-  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -80,9 +79,9 @@
       }
     }
   },
+  "spinnerTipsEnabled": true,
   "viewMode": "verbose",
   "language": "中文",
-  "spinnerTipsEnabled": true,
   "spinnerTipsOverride": {
     "excludeDefault": true,
     "tips": [

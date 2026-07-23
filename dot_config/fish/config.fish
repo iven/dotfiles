@@ -141,6 +141,10 @@ if status is-interactive
 
     ########## 其他 ##########
 
+    if not set -q SSH_AUTH_SOCK
+        eval (ssh-agent -c) >/dev/null
+    end
+
     if command -sq starship
         set -gx STARSHIP_LOG error
         starship init fish | source

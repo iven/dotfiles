@@ -1,12 +1,11 @@
-require('nvim-treesitter').setup {}
-
-require('nvim-treesitter').install {
-  'bash', 'cmake', 'cpp', 'css', 'dockerfile', 'fish', 'go', 'gomod', 'gowork',
-  'javascript', 'json', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
-  'ruby', 'rust', 'scss', 'toml', 'typescript', 'vim', 'vue', 'yaml',
+require('nvim-treesitter.configs').setup {
+  indent = { enable = true },
+  ensure_installed = {
+    'bash', 'cmake', 'cpp', 'css', 'dockerfile', 'fish', 'go', 'gomod', 'gowork',
+    'javascript', 'json', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
+    'ruby', 'rust', 'scss', 'toml', 'typescript', 'vim', 'vue', 'yaml',
+  },
 }
-
-vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(ev)

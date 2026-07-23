@@ -134,11 +134,13 @@ vim.api.nvim_create_autocmd('FileType', {
   group = 'user_config',
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*.md',
   callback = function()
-    -- ftplugin/markdown.vim 默认设置了 't'，导致输入时自动插入换行
+    -- ftplugin/markdown.vim 会添加 't'、'c'，editorconfig 的 max_line_length 会设置 textwidth
     vim.opt_local.formatoptions:remove('t')
+    vim.opt_local.formatoptions:remove('c')
+    vim.opt_local.textwidth = 0
   end,
   desc = '禁止 markdown 自动折行',
   group = 'user_config',
