@@ -49,7 +49,8 @@
     "oxfmt":                          "latest",
     "luajitPackages.tree-sitter-cli": "latest",
     "zls":                            "latest",
-    "deno":                           "latest"
+    "deno":                           "latest",
+    "prek":                           "latest"
   },
   "env": {
     "LOCALE_ARCHIVE": "${DEVBOX_PACKAGES_DIR}/lib/locale/locale-archive"

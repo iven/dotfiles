@@ -142,7 +142,11 @@ if status is-interactive
     ########## 其他 ##########
 
     if not set -q SSH_AUTH_SOCK
-        eval (ssh-agent -c) >/dev/null
+        set -l agent_env $XDG_RUNTIME_DIR/ssh-agent.env
+        if not pgrep -u $USER ssh-agent > /dev/null
+            ssh-agent -c > $agent_env
+        end
+        source $agent_env > /dev/null
     end
 
     if command -sq starship

@@ -1861,6 +1861,44 @@
         }
       }
     },
+    "prek@latest": {
+      "last_modified": "2026-07-23T05:10:05Z",
+      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#prek",
+      "source": "devbox-search",
+      "version": "0.4.4",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/792w7kb2b1jfgigggqcbkkv490inkjgb-prek-0.4.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/792w7kb2b1jfgigggqcbkkv490inkjgb-prek-0.4.4"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ndxwd16bc4f9dpp11fw6zaxmadk154z6-prek-0.4.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ndxwd16bc4f9dpp11fw6zaxmadk154z6-prek-0.4.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zy1qp9qm62dpdd44vwg3rjbfs854qlnh-prek-0.4.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zy1qp9qm62dpdd44vwg3rjbfs854qlnh-prek-0.4.4"
+        }
+      }
+    },
     "ripgrep@latest": {
       "last_modified": "2026-06-27T07:37:20Z",
       "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#ripgrep",
