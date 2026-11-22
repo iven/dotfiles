@@ -3,6 +3,7 @@
 fish_add_path /usr/local/bin
 fish_add_path $HOME/.local/bin
 fish_add_path /opt/homebrew/bin
+fish_add_path $HOME/.cargo/bin
 
 ########## 环境变量 ##########
 
@@ -147,6 +148,10 @@ if status is-interactive
             ssh-agent -c > $agent_env
         end
         source $agent_env > /dev/null
+    end
+
+    if not ssh-add -l > /dev/null 2>&1
+        ssh-add -q $HOME/.ssh/id_ed25519 2> /dev/null
     end
 
     if command -sq starship
