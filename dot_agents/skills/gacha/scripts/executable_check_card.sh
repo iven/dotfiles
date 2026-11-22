@@ -45,8 +45,8 @@ for file in "$@"; do
 
     run_check '1. 残缺注音' rg -n '\{[^}|]*\}' "$file"
     run_check '2. 注音块外残留汉字' rg -n -P '\{[^}|]*\|[^}]*\}(*SKIP)(*F)|\[[^\[\]]*\](*SKIP)(*F)|[一-龠々]' "$file"
-    run_check '3. 粗体贴字（前）' rg -n '[ぁ-ゖァ-ヺ一-龠々]\*\*\{' "$file"
-    run_check '4. 粗体贴字（后）' rg -n '[ぁ-ゖァ-ヺ一-龠々}]\*\*(?=[ぁ-ゖァ-ヺ一-龠々{])' --pcre2 "$file"
+    run_check '3. 粗体前缺空格' rg -n '[ぁ-ゖァ-ヺ一-龠々]\*\*\{' "$file"
+    run_check '4. 粗体后缺空格' rg -n '[ぁ-ゖァ-ヺ一-龠々}]\*\*(?=[ぁ-ゖァ-ヺ一-龠々{])' --pcre2 "$file"
     run_check '5. 注音块基底含假名' rg -n -P '\{[^}|]*[ぁ-ゖァ-ヺ][^}|]*\|[^}]*\}' "$file"
     run_check '6. 注音切分段数与基底字符数不一致' perl -CSD -Mutf8 -ne 'while(/\{([^|}]*)\|([^}]*)\}/g){my($b,$r)=($1,$2);my$k=()=$b=~/[\p{Han}々0-9]/g;my$d=()=$r=~/・/g;print "$ARGV:$.:$_\n" if$d+1!=$k}' "$file"
     run_check '7. 连续引用块（中间缺空行）' rg -n -U '^>[^\n]*\n>' "$file"
