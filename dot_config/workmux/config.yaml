@@ -2,4 +2,4 @@ nerdfont: true
 merge_strategy: rebase
 worktree_dir: .worktrees
 agents:
-  claude: "hapi claude --dangerously-skip-permissions"
+  claude: "claude --dangerously-skip-permissions"
