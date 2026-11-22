@@ -159,9 +159,9 @@ require("lazy").setup({
     "petertriho/nvim-scrollbar",
     config = function()
       require("scrollbar").setup({
-        excluded_buftypes = { "terminal", "nofile" },
+        exclude = { buftypes = { "terminal", "nofile" } },
+        providers = { gitsigns = true },
       })
-      require("scrollbar.handlers.gitsigns").setup()
     end,
   },
   {
@@ -335,7 +335,6 @@ require("lazy").setup({
     dependencies = {
       'rafamadriz/friendly-snippets',
       "xzbdmw/colorful-menu.nvim",
-      { "saghen/blink.compat", opts = { enable_events = true } },
     },
     opts = {
       keymap = {
@@ -389,42 +388,12 @@ require("lazy").setup({
         },
       },
       sources = {
-        default = { 'codeium', 'snippets', 'lsp', 'buffer', 'path' },
-        providers = {
-          -- Codeium 行为比较奇怪，只有在手动 C-n 的时候才会自动补全
-          codeium = {
-            name = "codeium",
-            module = "blink.compat.source",
-            async = true,
-            score_offset = 30,
-          },
-        },
+        default = { 'snippets', 'lsp', 'buffer', 'path' },
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = { enabled = true },
     },
     opts_extend = { "sources.default" }
-  },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require("codeium").setup({
-        virtual_text = {
-          enabled = true,
-          idle_delay = 0,
-          key_bindings = {
-            accept = '<c-f>',
-            prev = '<c-k>',
-            next = '<c-j>',
-          },
-        }
-      })
-    end,
-    event = 'InsertEnter',
   },
   {
     "yetone/avante.nvim",
@@ -463,6 +432,7 @@ require("lazy").setup({
       }
     },
     dependencies = {
+      { "ColinKennedy/mega.cmdparse", dependencies = { "ColinKennedy/mega.logging" } },
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
